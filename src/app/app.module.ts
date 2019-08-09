@@ -4,7 +4,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { UtilService, AuthGuard, CommonCommunicationService } from './shared';
+import { HttpService, UtilService, AuthGuard, CommonCommunicationService } from './shared';
 import { AppModalService, AppLoadingService, AppHeaderService } from './components';
 import { AppListenerModule } from './components/app-listener/app-listener.module';
 // Import containers
@@ -78,12 +78,12 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
-import { UsersComponent } from './views/users/users.component';
-import { SiteComponent } from './views/site/site.component';
-import { TideComponent } from './views/tide/tide.component';
-import { WeatherComponent } from './views/weather/weather.component';
-import { WeatherInfoComponent } from './views/weather-info/weather-info.component';
- 
+// import { UsersComponent } from './views/users/users.component';
+// import { SiteComponent } from './views/site/site.component';
+// import { TideComponent } from './views/tide/tide.component';
+// import { WeatherComponent } from './views/weather/weather.component';
+// import { WeatherInfoComponent } from './views/weather-info/weather-info.component';
+
 
 
 
@@ -104,20 +104,15 @@ import { WeatherInfoComponent } from './views/weather-info/weather-info.componen
     AppComponent,
     ...APP_CONTAINERS,
     ...APP_COMPONENTS,
-    ...APP_DIRECTIVES,
-    UsersComponent,
-    SiteComponent,
-    TideComponent,
-    WeatherComponent,
-    WeatherInfoComponent,
- 
+    ...APP_DIRECTIVES
     // HighlightDirective
   ],
   providers: [
     AuthGuard, UtilService,
     AppModalService, AppLoadingService, AppHeaderService,
     CommonCommunicationService,
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    HttpService, UtilService
   ],
   bootstrap: [AppComponent]
 })

@@ -5,7 +5,7 @@ import {
   FullLayoutComponent,
   SimpleLayoutComponent
 } from './containers';
- 
+
 export const routes: Routes = [
   {
     path: '', redirectTo: 'login', pathMatch: 'full'
@@ -40,10 +40,37 @@ export const routes: Routes = [
       title: '主页'
     },
     children: [
+      // {
+      //   path: 'relation',
+      //   canActivate: [AuthGuard],
+      //   loadChildren: './views/relation/relation.module#RelationModule'
+      // },
       {
-        path: 'relation',
+        path: 'user',
         canActivate: [AuthGuard],
-        loadChildren: './views/relation/relation.module#RelationModule'
+        loadChildren: './views/users/users.module#UsersModule'
+      },
+      {
+        path: 'site',
+        canActivate: [AuthGuard],
+        loadChildren: './views/site/site.module#SiteModule'
+      },
+      {
+        path: 'tide',
+        canActivate: [AuthGuard],
+        loadChildren: './views/tide/tide.module#TideModule'
+      }
+      ,
+      {
+        path: 'weather',
+        canActivate: [AuthGuard],
+        loadChildren: './views/weather/weather.module#WeatherModule'
+      }
+      ,
+      {
+        path: 'weatherInfo',
+        canActivate: [AuthGuard],
+        loadChildren: './views/weather-info/weather-info.module#WeatherInfoModule'
       }
     ]
   },

@@ -13,9 +13,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
         RelationRoutingModule,
         AlertModule.forRoot(),
     ],
-    declarations: [RelationComponent],
-    providers: [
-        HttpService, UtilService
-    ]
+    declarations: [RelationComponent]
+
 })
 export class RelationModule { }
