@@ -12,6 +12,7 @@ export class UsersComponent implements OnInit {
   userList = [];
   loading = true;
   alertsDismiss: any = [];
+  isActivated='';
   constructor(public userService: UsersService, public service: RelationService) { }
 
   ngOnInit() {
