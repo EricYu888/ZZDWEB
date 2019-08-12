@@ -9,9 +9,15 @@
 
               <app-validator-input #IMEICode [startValidator]="hasSubmit" [test]="validatorStr(user.IMEICode)" [msg]="'请填写IMEI号码'" [readonly]="false"
               [labelname]="'IMEI号码'" [(ngModel)]="user.IMEICode" [placeholder]="'请输入IMEI号码'" [inputType]="'text'" [showRequired]='true'></app-validator-input>
-
+              <div class="form-group row">
+                  <label class="col-md-2 col-form-label"><span style="color: red;">*</span>激活</label>
+                  <label class="switch switch-primary" style="margin-left: 16px;">
+                    <input #status checked="true" class="switch-input" [(ngModel)]="user.isActivated"  (click)="changeStatus()" type="checkbox" style="display: none" >
+                    <span class="switch-slider"></span>
+                  </label>
+              </div>
               <div class="form-actions" *ngIf="add">
-              <button type="submit" class="btn btn-primary pull-right" style="" (click)="saveUser()">保存</button>
+              <button type="submit" class="btn btn-primary pull-right"  (click)="saveUser()">保存</button>
           </div>
           <div class="form-actions" *ngIf="modify">
               <button type="submit" class="btn btn-primary pull-right" (click)="saveUser()">修改</button>

@@ -23,7 +23,7 @@ export class UserOperationComponent implements OnInit {
     userName: '',
     phoneNum: '',
     IMEICode: '',
-    isActivated: 1
+    isActivated: true
   };
 
   loading: any;
@@ -63,5 +63,8 @@ export class UserOperationComponent implements OnInit {
   }
   saveUser() {
 
+  }
+  changeStatus() {
+    console.log(!this.user.isActivated)
   }
 }
