@@ -23,6 +23,7 @@ export class AppValidatorInputComponent implements OnInit, ControlValueAccessor 
   @Input() disabled?: boolean;
   @Input() inputType: string;
   @Input() readonly?: boolean;
+  @Input() showRequired?: boolean;
 
   @Output() onBlur?: EventEmitter<any> = new EventEmitter<any>();
   @Output() onFocus?: EventEmitter<any> = new EventEmitter<any>();

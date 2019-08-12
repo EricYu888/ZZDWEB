@@ -5,8 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HttpService, UtilService, AuthGuard, CommonCommunicationService } from './shared';
-import { AppModalService, AppLoadingService, AppHeaderService } from './components';
+import { AppModalService, AppLoadingService, AppHeaderService, AppAlertService } from './components';
 import { AppListenerModule } from './components/app-listener/app-listener.module';
+
 // Import containers
 import {
   FullLayoutComponent,
@@ -102,7 +103,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
   ],
   providers: [
     AuthGuard, UtilService,
-    AppModalService, AppLoadingService, AppHeaderService,
+    AppModalService, AppLoadingService, AppHeaderService, AppAlertService,
     CommonCommunicationService,
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     HttpService, UtilService

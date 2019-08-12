@@ -1,7 +1,9 @@
 <div class="form-group row">
-    <label class="col-md-2 col-form-label" for="{{tagName}}">{{labelname}}</label>
+
+    <label class="col-md-2 col-form-label" for="{{tagName}}">  <span *ngIf="showRequired" style="color: red;">*</span>{{labelname}}</label>
     <div class="col-md-6">
         <div class="input-group">
+
             <div *ngIf="showIcon()" class="input-group-prepend">
                 <span class="input-group-text"><i class="{{iconClass}}"></i></span>
             </div>

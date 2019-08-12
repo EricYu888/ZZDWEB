@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit, ViewEncapsulation } from '@angular/core';
 import { RelationService } from './../../shared/services/relation.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UsersService } from './../../shared/services/users.service'
 @Component({
   selector: 'app-users',
@@ -12,8 +13,11 @@ export class UsersComponent implements OnInit {
   userList = [];
   loading = true;
   alertsDismiss: any = [];
-  isActivated='';
-  constructor(public userService: UsersService, public service: RelationService) { }
+  isActivated = '';
+  constructor(public userService: UsersService,
+    public service: RelationService,
+    public router: Router
+    ) { }
 
   ngOnInit() {
     this.bindUserAll();
@@ -21,6 +25,13 @@ export class UsersComponent implements OnInit {
 
   bindUserAll() {
 
+  }
+
+  getAll() {
+
+  }
+  addUser() {
+    this.router.navigate(['/user/operation'], { queryParams: { operate: 'add' } });
   }
 
 }

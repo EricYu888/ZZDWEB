@@ -7,15 +7,47 @@ import { AppValidatorInputComponent, AppValidatorSelectComponent } from '../../.
 import { AppLoadingService } from '../../../components/app-loading';
 import { AlertConfig } from 'ngx-bootstrap/alert';
 
+
 @Component({
   templateUrl: 'operation.component.html',
+  styleUrls: ['./operation.component.scss'],
   providers: [UsersService]
 })
 export class UserOperationComponent implements OnInit {
-  constructor() {
+
+  id: any;
+  add = false;
+  modify = false;
+  hasSubmit: boolean;
+  user = {
+    userName: '',
+    phoneNum: '',
+    IMEICode: '',
+    isActivated: 1
+  };
+
+  loading: any;
+  activitelist = [];
+  alertsDismiss: any = [];
+  @ViewChild('userName') userName;
+
+  constructor(
+    public activatedRoute: ActivatedRoute,
+    public router: Router,
+    public util: UtilService,
+    public appLoadingService: AppLoadingService,
+    public service: UsersService,
+    public appAlertService: AppAlertService) {
 
   }
+
+  validatorStr(str) {
+    return !this.util.isEmptyStr(str);
+  }
   ngOnInit() {
+
+  }
+  saveUser() {
 
   }
 }
