@@ -4,16 +4,17 @@ import { NgModule } from '@angular/core';
 import { HttpService, UtilService } from '../../shared/';
 
 import { UsersComponent } from './users.component';
+import { UserOperationComponent } from './operation/operation.component';
 import { UsersRoutingModule } from './users-routing.module';
-// import { AlertModule } from 'ngx-bootstrap/alert';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     UsersRoutingModule,
-    // AlertModule.forRoot(),
+    AlertModule.forRoot(),
   ],
-  declarations: [UsersComponent]
+  declarations: [UsersComponent, UserOperationComponent]
 })
 export class UsersModule { }

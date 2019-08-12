@@ -40,15 +40,25 @@ export const routes: Routes = [
       title: '主页'
     },
     children: [
-      // {
-      //   path: 'relation',
-      //   canActivate: [AuthGuard],
-      //   loadChildren: './views/relation/relation.module#RelationModule'
-      // },
+      {
+        path: 'relation',
+        canActivate: [AuthGuard],
+        loadChildren: './views/relation/relation.module#RelationModule'
+      },
       {
         path: 'user',
         canActivate: [AuthGuard],
         loadChildren: './views/users/users.module#UsersModule'
+      },
+      {
+        path: 'notice',
+        canActivate: [AuthGuard],
+        loadChildren: './views/notice/notice.module#NoticeModule'
+      },
+      {
+        path: 'picture',
+        canActivate: [AuthGuard],
+        loadChildren: './views/picture/picture.module#PictureModule'
       },
       {
         path: 'site',

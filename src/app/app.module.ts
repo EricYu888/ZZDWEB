@@ -78,13 +78,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
-// import { UsersComponent } from './views/users/users.component';
-// import { SiteComponent } from './views/site/site.component';
-// import { TideComponent } from './views/tide/tide.component';
-// import { WeatherComponent } from './views/weather/weather.component';
-// import { WeatherInfoComponent } from './views/weather-info/weather-info.component';
-
-
 
 
 @NgModule({
@@ -104,8 +97,8 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     AppComponent,
     ...APP_CONTAINERS,
     ...APP_COMPONENTS,
-    ...APP_DIRECTIVES
-    // HighlightDirective
+    ...APP_DIRECTIVES,
+
   ],
   providers: [
     AuthGuard, UtilService,

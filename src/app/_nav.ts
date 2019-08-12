@@ -2,16 +2,28 @@
  * 左侧菜单
  */
 export const navigation = [
-//   {
-//   name: '对外站点权限',
-//   url: '/relation',
-//   icon: 'icon-star',
-//   role: 'admin'
-// },
+  {
+  name: '对外站点权限',
+  url: '/relation',
+  icon: 'icon-star',
+  role: 'admin'
+},
 {
   name: '用户管理',
   url: '/user',
   icon: 'icon-user',
+  role: 'admin'
+},
+{
+  name: '通知管理',
+  url: '/notice',
+  icon: 'icon-envelope',
+  role: 'admin'
+},
+{
+  name: '图片管理',
+  url: '/picture',
+  icon: 'icon-picture',
   role: 'admin'
 },
 {
