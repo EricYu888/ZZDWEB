@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
         if (res.result.isSuccess) {
           sessionStorage.setItem('username', res.result.data[0].username)
           console.log(res.result.data[0].username)
-          this.router.navigate(['/relation']);
+          this.router.navigate(['/user']);
         } else {
           this.alertsDismiss.push({
             type: 'danger',

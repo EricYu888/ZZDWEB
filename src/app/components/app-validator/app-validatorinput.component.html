@@ -3,11 +3,11 @@
     <label class="col-md-2 col-form-label" for="{{tagName}}">  <span *ngIf="showRequired" style="color: red;">*</span>{{labelname}}</label>
     <div class="col-md-6">
         <div class="input-group">
-
             <div *ngIf="showIcon()" class="input-group-prepend">
                 <span class="input-group-text"><i class="{{iconClass}}"></i></span>
             </div>
-            <input type="{{inputType}}" name="{{tagName}}" class="form-control" placeholder="{{placeholder}}"
+            <input type="{{inputType}}" name="{{tagName}}" class="form-control" placeholder="{{placeholder}}" style="border: 1px solid #e4e7ea;
+            border-radius: .25rem;"
                 [(ngModel)]="_value" [disabled]="readonly" [ngClass]="{'is-invalid':invalidate()}" (input)="inputValueChange()"
                 (compositionend)="inputValueChange()" (focus)="inputFocus($event)" (blur)="inputBlur($event)"
                 (keyup.enter)="inputEnter($event);">

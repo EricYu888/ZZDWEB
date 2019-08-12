@@ -38,11 +38,25 @@ export class UserOperationComponent implements OnInit {
     public appLoadingService: AppLoadingService,
     public service: UsersService,
     public appAlertService: AppAlertService) {
-
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.id = params.id;
+      let operate = params.operate;
+      if (operate === 'add') {
+        this.add = true;
+        this.modify = false;
+      } else {
+        this.user['id'] = this.id;
+        this.add = false;
+        this.modify = true;
+      }
+    });
   }
 
   validatorStr(str) {
     return !this.util.isEmptyStr(str);
+  }
+  validatorPhone(str) {
+    return !this.util.validatorPhone(str);
   }
   ngOnInit() {
 
