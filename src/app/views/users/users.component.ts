@@ -1,5 +1,4 @@
 import { Component, ElementRef, ViewChild, OnInit, ViewEncapsulation } from '@angular/core';
-
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsersService } from './../../shared/services/users.service'
 @Component({
@@ -14,6 +13,10 @@ export class UsersComponent implements OnInit {
   loading = true;
   alertsDismiss: any = [];
   isActivated = '';
+  totalItems: number;
+  pageNum: number;
+  pageSize: number;
+
   constructor(public userService: UsersService,
     public router: Router
   ) { }

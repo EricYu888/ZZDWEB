@@ -1,0 +1,33 @@
+<div class="animated fadeIn">
+    <div class="card">
+        <div class="card-body">
+            <app-validator-input #title [startValidator]="hasSubmit" [test]="validatorStr(notice.title)" [msg]="'请填写通知标题'" [readonly]="false"
+                [labelname]="'通知标题：'" [(ngModel)]="notice.title" [placeholder]="'请输入通知标题'" [inputType]="'text'" [showRequired]='true'></app-validator-input>
+
+               <ueditor #pageContentEl
+               name="newsContent"
+               [(ngModel)]="notice.newsContent"
+
+               ></ueditor>
+
+                <!-- <app-validator-input #phoneNum [startValidator]="hasSubmit" [test]="validatorPhone(user.phoneNum)" [msg]="'请填写手机号码'" [readonly]="false"
+                [labelname]="'手机号码'" [(ngModel)]="user.phoneNum" [placeholder]="'请输入手机号码'" [inputType]="'text'" [showRequired]='true'></app-validator-input>
+
+                <app-validator-input #IMEICode [startValidator]="hasSubmit" [test]="validatorCode(user.IMEICode)" [msg]="'请填写15位IMEI数字号码'" [readonly]="false"
+                [labelname]="'IMEI号码'" [(ngModel)]="user.IMEICode" [placeholder]="'请输入IMEI号码'" [inputType]="'text'" [showRequired]='true'></app-validator-input>
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label"><span style="color: red;">*</span>激活</label>
+                    <label class="switch switch-primary" style="margin-left: 16px;">
+                      <input #status checked="true" class="switch-input" [(ngModel)]="user.isActivated"  (click)="changeStatus()" type="checkbox" style="display: none" >
+                      <span class="switch-slider"></span>
+                    </label>
+                </div> -->
+                <div class="form-actions" *ngIf="add">
+                <button type="submit" class="btn btn-primary pull-right"  (click)="saveNotice()">保存</button>
+            </div>
+            <div class="form-actions" *ngIf="modify">
+                <button type="submit" class="btn btn-primary pull-right" (click)="saveNotice()">修改</button>
+            </div>
+        </div>
+    </div>
+  </div>
