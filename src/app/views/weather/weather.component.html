@@ -1,3 +1,79 @@
-<p>
-  weather works!
-</p>
+<!-- include summernote css/js-->
+<link href="../../../assets/plugins/summernote-master/dist/summernote.css" rel="stylesheet">
+<script src="../../../assets/plugins/summernote-master/dist/summernote.js"></script>
+<script type="text/javascript">
+  $(function() {
+    $('.summernote').summernote({
+      height: 200,
+      tabsize: 2,
+      toolbar: [
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['insert', ['hello']]
+      ]
+    });
+  });
+</script>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <div>
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" href="#ShortTerm">短期天气预报</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#Xun">旬天气预报</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#Month">月天气预报</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#Quater">季天气预报</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#Year">年天气预报</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#MonthReport">月气候评估</a>
+              </li>
+            </ul>
+            <div>
+              <div class="tab-pane fade in active" id="ShortTerm">
+                <p>asdfasdf
+                </p>
+              </div>
+              <div class="tab-pane fade" id="Xun">
+                <p>
+                  NET CORE 是一个由微软公司开发和发布的跨平台框架。
+                </p>
+              </div>
+              <div class="tab-pane fade" id="Month">
+                <p>
+                  EF 是一款开源的ORM框架。
+                </p>
+              </div>
+              <div class="tab-pane fade" id="Quater">
+                <p>
+                  Docker是一个创建高度可扩展性和强大的容器架构。
+                </p>
+              </div>
+
+              <div class="tab-pane fade" id="Year">
+                <p>
+                  year
+                </p>
+              </div>
+              <div class="tab-pane fade" id="MonthReport">
+                <p>
+                  report
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
