@@ -23,7 +23,8 @@ const routes: Routes = [
       data: {
         title: '操作'
       }
-    }]
+    }
+    ]
   }
 ];
 @NgModule({

@@ -1,0 +1,38 @@
+button {
+  border: 1px solid #e4e7ea;
+  border-radius: .25rem;
+}
+
+.switch {
+  display: inline-block;
+  width: 40px;
+  height: 26px;
+}
+
+.switch-primary .switch-input:checked+.switch-slider {
+  background-color: #20a8d8;
+  border-color: #1985ac;
+}
+.switch-slider {
+  position: relative;
+  display: block;
+  height: inherit;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #c8ced3;
+  transition: .15s ease-out;
+  border-radius: .25rem;
+}
+.switch-slider::before {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  content: "";
+  background-color: #fff;
+  border: 1px solid #c8ced3;
+  transition: .15s ease-out;
+  border-radius: .125rem;
+}
