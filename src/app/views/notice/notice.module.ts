@@ -5,7 +5,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { NoticeComponent } from './notice.component';
 import { NoticeRoutingModule } from './notice-routing.module';
 import { AlertModule } from 'ngx-bootstrap/alert';
-import { UEditorModule } from 'ngx-ueditor';
+import { UEditorModule } from 'ueditor';
 @NgModule({
   imports: [
     CommonModule,
