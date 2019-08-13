@@ -4,8 +4,11 @@
             <app-validator-input #title [startValidator]="hasSubmit" [test]="validatorStr(notice.title)" [msg]="'请填写通知标题'" [readonly]="false"
                 [labelname]="'通知标题：'" [(ngModel)]="notice.title" [placeholder]="'请输入通知标题'" [inputType]="'text'" [showRequired]='true'></app-validator-input>
 
+               <ueditor #pageContentEl
+               name="newsContent"
+               [(ngModel)]="notice.newsContent"
 
-               <ueditor #pageContentEl name="newsContent" [(ngModel)]="notice.newsContent"></ueditor>
+               ></ueditor>
 
                 <!-- <app-validator-input #phoneNum [startValidator]="hasSubmit" [test]="validatorPhone(user.phoneNum)" [msg]="'请填写手机号码'" [readonly]="false"
                 [labelname]="'手机号码'" [(ngModel)]="user.phoneNum" [placeholder]="'请输入手机号码'" [inputType]="'text'" [showRequired]='true'></app-validator-input>

@@ -19,15 +19,14 @@ import { UEditorModule } from 'ngx-ueditor'
     AppValidatorModule,
     UEditorModule.forRoot({
       js: [
-        `./assets/ueditor/ueditor.all.min.js`,
-        `./assets/ueditor/ueditor.config.js`,
+        `../../../assets/ueditor/ueditor.config.js`,
+        `../../../assets/ueditor/ueditor.all.js`,
       ],
       // 默认前端配置项
       options: {
-        UEDITOR_HOME_URL: '/assets/ueditor/themes/'
+        UEDITOR_HOME_URL: '../../../assets/ueditor/'
       }
     })
-
   ],
   declarations: [NoticeComponent, NoticeOperationComponent]
 
