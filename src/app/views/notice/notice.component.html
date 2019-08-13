@@ -1,3 +1,53 @@
-<p>
-  notice works!
-</p>
+<div class="animated fadeIn">
+  <div class="row">
+      <div class="col-sm-12">
+          <div class="card">
+              <div class="card-body">
+                  <div class="form-inline">
+                      <div class="col-sm-8 form-inline">
+                        <div class="form-group filter-form-group">
+                          <label for="shopidEl">通知题目</label>
+                          <input type="text" name="title" class="form-control " [(ngModel)]="title">&nbsp;&nbsp;
+                      </div>
+                      <button type="button" class="btn btn-success serarchbutton" (click)="getAll()">查询</button>&nbsp;&nbsp;
+                    </div>
+                      <div class="col-sm-3" >
+                          <button type="button" class="btn btn-primary newButton" (click)="addNotice()">新增</button>&nbsp;&nbsp;
+                      </div>
+                  </div>
+                  <div style="height:20px"></div>
+                   <div *ngFor="let alert of alertsDismiss">
+                      <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+                  </div>
+                  <table class="table" style="margin-top:18px;text-align:center;">
+                      <thead class="thead-light">
+                          <tr>
+                              <th>新闻标题</th>
+                              <th>发布时间</th>
+                              <th>操作</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngIf="!loading && noticeList.length==0">
+                              <td colspan="3">没有相关数据</td>
+                          </tr>
+                          <tr *ngIf="loading">
+                              <td colspan="3">正在载入数据...</td>
+                          </tr>
+                          <tr *ngFor="let item of noticeList">
+                            <td>{{item.title}}</td>
+                            <td>{{item.publishDate}}</td>
+                            <td style="text-align:center;">
+                              <div class="form-actions">
+                                  <button type="button" class="btn btn-info" (click)="jumpToModify(item)">修改</button> &nbsp;
+                                  <button type="button" class="btn btn-danger" (click)="deleteNotice(item)">删除</button>
+                              </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

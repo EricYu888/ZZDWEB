@@ -7,7 +7,7 @@
               <app-validator-input #phoneNum [startValidator]="hasSubmit" [test]="validatorPhone(user.phoneNum)" [msg]="'请填写手机号码'" [readonly]="false"
               [labelname]="'手机号码'" [(ngModel)]="user.phoneNum" [placeholder]="'请输入手机号码'" [inputType]="'text'" [showRequired]='true'></app-validator-input>
 
-              <app-validator-input #IMEICode [startValidator]="hasSubmit" [test]="validatorStr(user.IMEICode)" [msg]="'请填写IMEI号码'" [readonly]="false"
+              <app-validator-input #IMEICode [startValidator]="hasSubmit" [test]="validatorCode(user.IMEICode)" [msg]="'请填写15位IMEI数字号码'" [readonly]="false"
               [labelname]="'IMEI号码'" [(ngModel)]="user.IMEICode" [placeholder]="'请输入IMEI号码'" [inputType]="'text'" [showRequired]='true'></app-validator-input>
               <div class="form-group row">
                   <label class="col-md-2 col-form-label"><span style="color: red;">*</span>激活</label>

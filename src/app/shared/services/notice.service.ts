@@ -4,21 +4,21 @@ import { HttpService } from '../../shared/services/http.service';
 
 @Injectable()
 
-export class UsersService {
+export class NoticeService {
   constructor(public service: HttpService) {
 
   }
 
-  public getAllUsers(params): Promise<any> {
+  public getAllNotices(params): Promise<any> {
     return;
   }
-  public getUserDetail(params): Promise<any> {
+  public getNoticeDetail(params): Promise<any> {
     return;
   }
-  public UpdataUser(params): Promise<any> {
+  public UpdataNotice(params): Promise<any> {
     return;
   }
-  public AddUser(params): Promise<any> {
+  public AddNotice(params): Promise<any> {
     return;
   }
 }
