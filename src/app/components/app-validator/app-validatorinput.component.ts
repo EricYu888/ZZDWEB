@@ -79,22 +79,18 @@ export class AppValidatorInputComponent implements OnInit, ControlValueAccessor 
   }
 
   inputValueChange() {
-    console.log(11)
     this.propagateChange(this._value);
   }
 
   inputFocus(event: any) {
-    console.log(22)
     this.onFocus.emit(event);
   }
 
   inputBlur(event: any) {
-    console.log(33)
     this.onBlur.emit(event);
   }
 
   inputEnter(event: any) {
-    console.log(44)
     this.onKeyupEnter.emit(event);
   }
 }

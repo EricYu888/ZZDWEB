@@ -6,7 +6,7 @@
                   <div class="form-inline">
                       <div class="col-sm-8 form-inline">
                         <div class="form-group filter-form-group">
-                          <label for="shopidEl">通知题目</label>
+                          <label for="shopidEl">通知标题</label>
                           <input type="text" name="title" class="form-control " [(ngModel)]="title">&nbsp;&nbsp;
                       </div>
                       <button type="button" class="btn btn-success serarchbutton" (click)="getAll()">查询</button>&nbsp;&nbsp;
@@ -46,6 +46,8 @@
                         </tr>
                       </tbody>
                   </table>
+                  <pagination [totalItems]="totalItems" [itemsPerPage]="pageSize" class="pagination-sm" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [boundaryLinks]="true" [rotate]="false" (pageChanged)="pageChanged($event)" class="pull-right"
+                  [maxSize]="5" [hidden]="!(!loading && noticeList.length!=0)"></pagination>
               </div>
           </div>
       </div>

@@ -5,7 +5,10 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { NoticeComponent } from './notice.component';
 import { NoticeRoutingModule } from './notice-routing.module';
 import { AlertModule } from 'ngx-bootstrap/alert';
-import { UEditorModule } from 'ueditor';
+import { NoticeOperationComponent } from './operation/operation.component';
+import { AppValidatorModule } from '../../components';
+//  import { UMeditorModule } from 'ngx-umeditor';
+import { UEditorModule } from 'ngx-ueditor'
 @NgModule({
   imports: [
     CommonModule,
@@ -13,16 +16,20 @@ import { UEditorModule } from 'ueditor';
     NoticeRoutingModule,
     PaginationModule.forRoot(),
     AlertModule.forRoot(),
+    AppValidatorModule,
     UEditorModule.forRoot({
-      // 指定ueditor.js路径目录
-      path: 'assets/ueditor/',
-      // 默认全局配置项
+      js: [
+        `./assets/ueditor/ueditor.all.min.js`,
+        `./assets/ueditor/ueditor.config.js`,
+      ],
+      // 默认前端配置项
       options: {
-        themePath: '/assets/ueditor/themes/',
+        UEDITOR_HOME_URL: '/assets/ueditor/themes/'
       }
     })
+
   ],
-  declarations: [NoticeComponent]
+  declarations: [NoticeComponent, NoticeOperationComponent]
 
 })
 export class NoticeModule { }

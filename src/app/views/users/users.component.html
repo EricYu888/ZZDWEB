@@ -59,6 +59,8 @@
                         </tr>
                       </tbody>
                   </table>
+                  <pagination [totalItems]="totalItems" [itemsPerPage]="pageSize" class="pagination-sm" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [boundaryLinks]="true" [rotate]="false" (pageChanged)="pageChanged($event)" class="pull-right"
+                  [maxSize]="5" [hidden]="!(!loading && userList.length!=0)"></pagination>
               </div>
           </div>
       </div>

@@ -31,7 +31,7 @@ export class UserOperationComponent implements OnInit {
   alertsDismiss: any = [];
   @ViewChild('userName') userName;
   @ViewChild('phoneNum') phoneNum;
-
+  @ViewChild('IMEICode') imeiCode;
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -87,7 +87,7 @@ export class UserOperationComponent implements OnInit {
 
   saveUser() {
     this.hasSubmit = true;
-    if (this.userName.test && this.phoneNum.test) {
+    if (this.userName.test && this.phoneNum.test && this.imeiCode.test) {
       this.appLoadingService.showLoading();
       let callback = (res) => {
         this.appLoadingService.hideLoading();
