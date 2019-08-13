@@ -5,6 +5,8 @@ import { HttpService, UtilService } from '../../shared/';
 
 import { WeatherInfoComponent } from './weather-info.component';
 import { WeatherInfoRoutingModule } from './weather-info-routing.module';
+
+import { TabsModule } from 'ngx-bootstrap/tabs';
 // import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
@@ -13,6 +15,7 @@ import { WeatherInfoRoutingModule } from './weather-info-routing.module';
     FormsModule,
     WeatherInfoRoutingModule,
     // AlertModule.forRoot(),
+    TabsModule,
   ],
   declarations: [WeatherInfoComponent]
 })

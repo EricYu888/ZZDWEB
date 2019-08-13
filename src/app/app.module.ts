@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HttpService, UtilService, AuthGuard, CommonCommunicationService } from './shared';
 import { AppModalService, AppLoadingService, AppHeaderService, AppAlertService } from './components';
 import { AppListenerModule } from './components/app-listener/app-listener.module';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 // Import containers
 import {
@@ -90,6 +91,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     AlertModule.forRoot(),
     ProgressbarModule.forRoot(),
     PaginationModule.forRoot(),
+    TabsModule.forRoot(),
     HttpClientModule,
     FormsModule,
     AppListenerModule

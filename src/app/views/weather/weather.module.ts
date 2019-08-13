@@ -6,6 +6,7 @@ import { HttpService, UtilService } from '../../shared/';
 import { WeatherComponent } from './weather.component';
 import { WeatherRoutingModule } from './weather-routing.module';
 // import { AlertModule } from 'ngx-bootstrap/alert';
+import { UEditorModule } from 'ngx-ueditor'
 
 @NgModule({
   imports: [
@@ -13,6 +14,16 @@ import { WeatherRoutingModule } from './weather-routing.module';
     FormsModule,
     WeatherRoutingModule,
     // AlertModule.forRoot(),
+    UEditorModule.forRoot({
+      js: [
+        `../../../assets/ueditor/ueditor.config.js`,
+        `../../../assets/ueditor/ueditor.all.js`,
+      ],
+      // 默认前端配置项
+      options: {
+        UEDITOR_HOME_URL: '../../../assets/ueditor/'
+      }
+    })
   ],
   declarations: [WeatherComponent]
 })

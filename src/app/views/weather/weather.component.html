@@ -1,79 +1,118 @@
-<!-- include summernote css/js-->
-<link href="../../../assets/plugins/summernote-master/dist/summernote.css" rel="stylesheet">
-<script src="../../../assets/plugins/summernote-master/dist/summernote.js"></script>
-<script type="text/javascript">
-  $(function() {
-    $('.summernote').summernote({
-      height: 200,
-      tabsize: 2,
-      toolbar: [
-        ['style', ['bold', 'italic', 'underline', 'clear']],
-        ['insert', ['hello']]
-      ]
-    });
-  });
-</script>
 <div class="animated fadeIn">
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="card">
-        <div class="card-body">
-          <div>
-            <ul class="nav nav-tabs">
-              <li class="nav-item">
-                <a class="nav-link active" href="#ShortTerm">短期天气预报</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#Xun">旬天气预报</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#Month">月天气预报</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#Quater">季天气预报</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#Year">年天气预报</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#MonthReport">月气候评估</a>
-              </li>
-            </ul>
-            <div>
-              <div class="tab-pane fade in active" id="ShortTerm">
-                <p>asdfasdf
-                </p>
-              </div>
-              <div class="tab-pane fade" id="Xun">
-                <p>
-                  NET CORE 是一个由微软公司开发和发布的跨平台框架。
-                </p>
-              </div>
-              <div class="tab-pane fade" id="Month">
-                <p>
-                  EF 是一款开源的ORM框架。
-                </p>
-              </div>
-              <div class="tab-pane fade" id="Quater">
-                <p>
-                  Docker是一个创建高度可扩展性和强大的容器架构。
-                </p>
-              </div>
-
-              <div class="tab-pane fade" id="Year">
-                <p>
-                  year
-                </p>
-              </div>
-              <div class="tab-pane fade" id="MonthReport">
-                <p>
-                  report
-                </p>
-              </div>
-            </div>
+  <div class="card">
+    <div class="card-body">
+      <!-- Nav tabs -->
+      <div id="ShortTerm" class="card">
+        <div class="card-header">
+          <h4>短期天气预报</h4>
+        </div>
+        <div class="card-body" *ngIf="!isShortTermCollapsed">
+          <ueditor #ForcastContent_ShortTerm name="weatherForecastShortTerm" [(ngModel)]="weatherForecast.ShortTerm">
+          </ueditor>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary pull-right" (click)="save('ShortTerm')">保存</button>
+            <button type="reset" class="btn btn-primary pull-right" (click)="reset('ShortTerm')">重置</button>
           </div>
+        </div>
+        <div class="card-footer">
+          <button type="button" class="btn btn-primary" (click)="isShortTermCollapsed = !isShortTermCollapsed">
+            <span *ngIf="isShortTermCollapsed">展开</span>
+            <span *ngIf="!isShortTermCollapsed">收起</span>
+          </button>
+        </div>
+      </div>
+      <div id="Xun" class="card">
+        <div class="card-header">
+          <h4>旬天气预报</h4>
+        </div>
+        <div class="card-body" *ngIf="!isXunCollapsed">
+          <ueditor #ForcastContent_Xun name="weatherForecastXun" [(ngModel)]="weatherForecast.Xun"></ueditor>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary pull-right" (click)="save('Xun')">保存</button>
+            <button type="reset" class="btn btn-primary pull-right" (click)="reset('Xun')">重置</button>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="button" class="btn btn-primary" (click)="isXunCollapsed = !isXunCollapsed">
+            <span *ngIf="isXunCollapsed">展开</span>
+            <span *ngIf="!isXunCollapsed">收起</span>
+          </button>
+        </div>
+      </div>
+      <div id="Month" class="card">
+        <div class="card-header">
+          <h4>月天气预报</h4>
+        </div>
+        <div class="card-body" *ngIf="!isMonthCollapsed">
+          <ueditor #ForcastContent_Month name="weatherForecastMonth" [(ngModel)]="weatherForecast.Month"></ueditor>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary pull-right" (click)="save('Month')">保存</button>
+            <button type="reset" class="btn btn-primary pull-right" (click)="reset('Month')">重置</button>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="button" class="btn btn-primary" (click)="isMonthCollapsed = !isMonthCollapsed">
+            <span *ngIf="isMonthCollapsed">展开</span>
+            <span *ngIf="!isMonthCollapsed">收起</span>
+          </button>
+        </div>
+      </div>
+      <div id="Quater" class="card">
+        <div class="card-header">
+          <h4>季天气预报</h4>
+        </div>
+        <div class="card-body" *ngIf="!isQuaterCollapsed">
+          <ueditor #ForcastContent_Quater name="weatherForecastQuater" [(ngModel)]="weatherForecast.Quater"></ueditor>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary pull-right" (click)="save('Quater')">保存</button>
+            <button type="reset" class="btn btn-primary pull-right" (click)="reset('Quater')">重置</button>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="button" class="btn btn-primary" (click)="isQuaterCollapsed = !isQuaterCollapsed">
+            <span *ngIf="isQuaterCollapsed">展开</span>
+            <span *ngIf="!isQuaterCollapsed">收起</span>
+          </button>
+        </div>
+      </div>
+      <div id="Year" class="card">
+        <div class="card-header">
+          <h4>年天气预报</h4>
+        </div>
+        <div class="card-body" *ngIf="!isYearCollapsed">
+          <ueditor #ForcastContent_Year name="weatherForecastYear" [(ngModel)]="weatherForecast.Year"></ueditor>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary pull-right" (click)="save('Year')">保存</button>
+            <button type="reset" class="btn btn-primary pull-right" (click)="reset('Year')">重置</button>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="button" class="btn btn-primary" (click)="isYearCollapsed = !isYearCollapsed">
+            <span *ngIf="isYearCollapsed">展开</span>
+            <span *ngIf="!isYearCollapsed">收起</span>
+          </button>
+        </div>
+      </div>
+      <div id="MonthReport" class="card" *ngIf="!isMonthReportCollapsed">
+        <div class="card-header">
+          <h4>月气候评估</h4>
+        </div>
+        <div class="card-body">
+          <ueditor #ForcastContent_MonthReport name="weatherForecastMonthReport"
+            [(ngModel)]="weatherForecast.MonthReport"></ueditor>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary pull-right" (click)="save('MonthReport')">保存</button>
+              <button type="reset" class="btn btn-primary pull-right" (click)="reset('MonthReport')">重置</button>
+            </div>
+        </div>
+        <div class="card-footer">
+          <button type="button" class="btn btn-primary" (click)="isMonthReportCollapsed = !isMonthReportCollapsed">
+            <span *ngIf="isMonthReportCollapsed">展开</span>
+            <span *ngIf="!isMonthReportCollapsed">收起</span>
+          </button>
         </div>
       </div>
     </div>
   </div>
+  <!--/.col-->
 </div>
