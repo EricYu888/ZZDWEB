@@ -26,14 +26,16 @@ export class NoticeOperationComponent implements OnInit {
     newsAuthor: '',
     newsContent: '',
     publishTime: '',
-    noticeIndex: 0,
+    noticeIndex: '',
     isActivated: true
   };
-
+  detailView = false;
   loading: any;
   activitelist = [];
   alertsDismiss: any = [];
   @ViewChild('title') title;
+  @ViewChild('newsAuthor') newsAuthor;
+  @ViewChild('noticeIndex') noticeIndex;
   @ViewChild('pageContentEl') pageContentEl;
 
 
@@ -50,23 +52,20 @@ export class NoticeOperationComponent implements OnInit {
       if (operate === 'add') {
         this.add = true;
         this.modify = false;
-      } else {
+      } else if (operate === 'modify') {
         this.notice['id'] = this.id;
         this.add = false;
         this.modify = true;
       }
+      else {
+        this.add = false;
+        this.modify = false;
+        this.detailView = true;
+      }
     });
   }
 
-  validatorStr(str) {
-    return !this.util.isEmptyStr(str);
-  }
-  validatorPhone(str) {
-    return this.util.validatorPhone(str);
-  }
-  validatorCode(str) {
-    return this.util.validatorCode(str);
-  }
+
   ngOnInit() {
     if (this.id) {
       this.loadNotice();
@@ -118,7 +117,24 @@ export class NoticeOperationComponent implements OnInit {
       }
     }
   }
+  clolseNotice()
+  {
+
+  }
+  validatorStr(str) {
+    return !this.util.isEmptyStr(str);
+  }
+  validatorPhone(str) {
+    return this.util.validatorPhone(str);
+  }
+  validatorCode(str) {
+    return this.util.validatorCode(str);
+  }
   changeStatus() {
     // console.log(!this.user.isActivated)
+  }
+  _ready(event) {
+    console.log(event);
+    //  this.pageContentEl.Instance.iframe.clientHeight = 200;
   }
 }
