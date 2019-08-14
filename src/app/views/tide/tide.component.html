@@ -1,3 +1,65 @@
-<p>
-  tide works!
-</p>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="animated fadeIn">
+        <div class="card">
+          <div class="card-body">
+
+            <div class="form-inline">
+              <div class="col-sm-8 form-inline">
+                <div class="form-group filter-form-group">
+                  <label for="shopidEl">导入潮汐表</label>
+                  <div class="col-md-9">
+                    <input type="file" id="file-input" name="file-input">
+                  </div>
+                </div>
+                <button type="button" class="btn btn-success serarchbutton" (click)="import()">导入</button>&nbsp;&nbsp;
+              </div>
+              <div class="col-sm-3">
+                <button type="button" class="btn btn-info" popover="点击下载，编辑潮汐时间表并上传" triggers="mouseenter:mouseleave">
+                  当前潮汐时间表
+                </button>
+              </div>
+            </div>
+            <div style="height:20px"></div>
+            <div *ngFor="let alert of alertsDismiss">
+              <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+            </div>
+            <table class="table" style="margin-top:18px;text-align:center;">
+              <thead class="thead-light">
+                <tr>
+                  <th>公立日期</th>
+                  <th>阴历</th>
+                  <th>涨潮时间</th>
+                  <th>退潮时间</th>
+                  <th>涨潮时间</th>
+                  <th>退潮时间</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="!loading && tideList.length==0">
+                  <td colspan="6">没有相关数据</td>
+                </tr>
+                <tr *ngIf="loading">
+                  <td colspan="6">正在载入数据...</td>
+                </tr>
+                <tr *ngFor="let item of tideList">
+                  <td>{{item.date_public}}</td>
+                  <td>{{item.date_moon}}</td>
+                  <td>{{item.flood1}}</td>
+                  <td>{{item.ebb1}}</td>
+                  <td>{{item.flood2}}</td>
+                  <td>{{item.ebb2}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <pagination [totalItems]="totalItems" [itemsPerPage]="pageSize" [(ngModel)]="pageNum" class="pagination-sm"
+              previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [boundaryLinks]="true"
+              [rotate]="false" (pageChanged)="pageChanged($event)" class="pull-right" [maxSize]="5"
+              [hidden]="!(!loading && noticeList.length!=0)"></pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

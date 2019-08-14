@@ -23,15 +23,14 @@ export class WeatherInfoComponent implements OnInit {
     public service: WeatherService) { }
 
   ngOnInit() {
-    this.loadWeatherForecast("ShortTerm");
-    this.loadWeatherForecast("Xun");
-    this.loadWeatherForecast("Month");
-    this.loadWeatherForecast("Quater");
-    this.loadWeatherForecast("Year");
-    this.loadWeatherForecast("MonthReport");
+    this.loadWeatherForecast();
   }
 
-  bindHtml(content, forecastName){
+  bindHtml(forecastes){
+    if(forecastes == null) return;
+    forecastes.forEach(element => {    
+      let forecastName  = element.forecastName;
+      let content  = element.content;
     switch (forecastName) {
       case "ShortTerm":
           this.weatherForecast.ShortTerm = this.sanitizer.bypassSecurityTrustHtml(content);
@@ -52,15 +51,16 @@ export class WeatherInfoComponent implements OnInit {
           this.weatherForecast.MonthReport = this.sanitizer.bypassSecurityTrustHtml(content);
         break;
     }
+    });
   }
 
-  loadWeatherForecast(forecastName) {    
+  loadWeatherForecast() {    
     const param = {
-      forecaseName: forecastName
+      forecaseName: ""
     };
     this.service.getWeatherForecast(param).then(res => {
       if (res.code === 'SUCCESS') {
-          this.bindHtml(res.content,forecastName);
+          this.bindHtml(res.data);
       }
     })
   }
