@@ -1,3 +1,26 @@
-<p>
-  weather-info works!
-</p>
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-body">
+      <tabset>
+        <tab heading="短期天气预报">
+            <div [innerHTML]="weatherForecast.ShortTerm" ></div>
+        </tab>
+        <tab heading="旬天气预报">
+            <div [innerHTML]="weatherForecast.Xun" ></div>
+        </tab>
+        <tab heading="月天气预报">
+            <div [innerHTML]="weatherForecast.Month" ></div>
+        </tab>
+        <tab heading="季天气预报">
+            <div [innerHTML]="weatherForecast.Quater" ></div>
+        </tab>
+        <tab heading="年天气预报">
+            <div [innerHTML]="weatherForecast.Year" ></div>
+        </tab>
+        <tab heading="月气候评估">
+            <div [innerHTML]="weatherForecast.MonthReport" ></div>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>
