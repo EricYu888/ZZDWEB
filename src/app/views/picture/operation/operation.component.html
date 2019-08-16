@@ -16,40 +16,28 @@
                     <input *ngIf="!detailView" class="form-control" #newsFaceImage type=file accept="image/*" id="newsFaceImage" name="newsFaceImage" (change)="filechange($event)">
                   </label>
             </div>
-
           </div>
-          <!-- <div *ngIf="detailView">
+          <div *ngIf="detailView">
             <div class="form-group row">
-              <div class="col-md-2 col-form-label" >通知标题：</div>
+              <div class="col-md-2 col-form-label" >图片名称：</div>
               <div class="col-md-10 form-control" style="border: 0;">
-                  {{notice.title}}
+                  {{picture.title}}
               </div>
             </div>
-            <div   class="form-group row">
-                <div class="col-md-2 col-form-label">发布人:</div>
-                <div class="col-md-10 form-control" style="border: 0;">
-                    {{notice.newsAuthor}}
-                </div>
-              </div>
-            <div   class="form-group row">
+            <div class="form-group row">
                   <div class="col-md-2 col-form-label">显示序号:</div>
                   <div class="col-md-10 form-control" style="border: 0;">
-                      {{notice.noticeIndex}}
+                      {{picture.displayIndex}}
                   </div>
             </div>
-            <div   class="form-group row">
-                    <div class="col-md-2 col-form-label">发布时间:</div>
-                    <div class="col-md-10 form-control" style="border: 0;">
-                      {{notice.publishTime}}
-                    </div>
-            </div>
             <div class="form-group row">
-                      <div class="col-md-2 col-form-label">内容 :</div>
-                      <div class="col-md-10 form-control" style="border: 0;">
-                          <div [innerHtml]="notice.newsContent"></div>
-                      </div>
+                <label class="col-md-2 col-form-label"><span style="color: red;">*</span>图片展示</label>
+                <label class="switch switch-primary" style="margin-left: 16px;">
+                    <img   src="{{picture.imgUrl}}" style="width:100px;height:100px;">
+                  </label>
             </div>
-          </div> -->
+
+          </div>
 
           <div class="form-actions" *ngIf="add" style="margin-top: 20px;">
               <button type="submit" class="btn btn-primary pull-right"  (click)="savePic()">保存</button>
