@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import { PictureComponent } from './picture.component';
-
+import { PictureOperationComponent } from '../picture/operation/operation.component';
 
 const routes: Routes = [
   {
@@ -17,7 +17,15 @@ const routes: Routes = [
       data: {
         title: ''
       }
-    }]
+    },
+    {
+      path: 'operation',
+      component: PictureOperationComponent,
+      data: {
+        title: '操作'
+      }
+    }
+  ]
   }
 ];
 

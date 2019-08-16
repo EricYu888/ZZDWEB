@@ -26,7 +26,7 @@ export class NoticeOperationComponent implements OnInit {
     newsAuthor: '',
     newsContent: '',
     publishTime: '',
-    noticeIndex: '',
+    displayIndex: '',
     isActivated: true
   };
   detailView = false;
@@ -35,7 +35,7 @@ export class NoticeOperationComponent implements OnInit {
   alertsDismiss: any = [];
   @ViewChild('title') title;
   @ViewChild('newsAuthor') newsAuthor;
-  @ViewChild('noticeIndex') noticeIndex;
+  @ViewChild('displayIndex') displayIndex;
   @ViewChild('pageContentEl') pageContentEl;
 
 
@@ -56,8 +56,7 @@ export class NoticeOperationComponent implements OnInit {
         this.notice['id'] = this.id;
         this.add = false;
         this.modify = true;
-      }
-      else {
+      } else {
         this.add = false;
         this.modify = false;
         this.detailView = true;
@@ -117,8 +116,7 @@ export class NoticeOperationComponent implements OnInit {
       }
     }
   }
-  clolseNotice()
-  {
+  clolseNotice() {
 
   }
   validatorStr(str) {
@@ -127,8 +125,8 @@ export class NoticeOperationComponent implements OnInit {
   validatorPhone(str) {
     return this.util.validatorPhone(str);
   }
-  validatorCode(str) {
-    return this.util.validatorCode(str);
+  validatorNum(str) {
+    return this.util.validatorNum(str);
   }
   changeStatus() {
     // console.log(!this.user.isActivated)

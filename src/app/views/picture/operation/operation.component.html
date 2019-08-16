@@ -1,0 +1,57 @@
+<div class="animated fadeIn">
+  <div class="card">
+      <div class="card-body">
+          <div *ngIf="!detailView">
+            <app-validator-input #title [startValidator]="hasSubmit" [test]="validatorStr(picture.title)" [msg]="'请填写图片名称'" [readonly]="false"
+                [labelname]="'图片名称：'" [(ngModel)]="picture.title" [placeholder]="'请输入图片名称'" [inputType]="'text'" [showRequired]='true'>
+            </app-validator-input>
+
+            <app-validator-input #displayIndex [startValidator]="hasSubmit" [test]="validatorNum(picture.displayIndex)" [msg]="'请填写显示序号'" [readonly]="false"
+                [labelname]="'显示序号'" [(ngModel)]="picture.displayIndex" [placeholder]="'请输入显示序号'" [inputType]="'number'" [showRequired]='true'>
+            </app-validator-input>
+          </div>
+          <!-- <div *ngIf="detailView">
+            <div class="form-group row">
+              <div class="col-md-2 col-form-label" >通知标题：</div>
+              <div class="col-md-10 form-control" style="border: 0;">
+                  {{notice.title}}
+              </div>
+            </div>
+            <div   class="form-group row">
+                <div class="col-md-2 col-form-label">发布人:</div>
+                <div class="col-md-10 form-control" style="border: 0;">
+                    {{notice.newsAuthor}}
+                </div>
+              </div>
+            <div   class="form-group row">
+                  <div class="col-md-2 col-form-label">显示序号:</div>
+                  <div class="col-md-10 form-control" style="border: 0;">
+                      {{notice.noticeIndex}}
+                  </div>
+            </div>
+            <div   class="form-group row">
+                    <div class="col-md-2 col-form-label">发布时间:</div>
+                    <div class="col-md-10 form-control" style="border: 0;">
+                      {{notice.publishTime}}
+                    </div>
+            </div>
+            <div class="form-group row">
+                      <div class="col-md-2 col-form-label">内容 :</div>
+                      <div class="col-md-10 form-control" style="border: 0;">
+                          <div [innerHtml]="notice.newsContent"></div>
+                      </div>
+            </div>
+          </div> -->
+
+          <div class="form-actions" *ngIf="add" style="margin-top: 20px;">
+              <button type="submit" class="btn btn-primary pull-right"  (click)="savePic()">保存</button>
+          </div>
+          <div class="form-actions" *ngIf="modify" style="margin-top: 20px;">
+              <button type="submit" class="btn btn-primary pull-right" (click)="savePic()">修改</button>
+          </div>
+          <div class="form-actions" *ngIf="detailView" style="margin-top: 20px;">
+              <button type="submit" class="btn btn-primary pull-right" (click)="clolsePic()">关闭</button>
+          </div>
+      </div>
+  </div>
+</div>

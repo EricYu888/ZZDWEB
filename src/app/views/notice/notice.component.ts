@@ -43,5 +43,9 @@ export class NoticeComponent implements OnInit {
   pageChanged(event) {
 
   }
+
+  validatorStr(url) {
+
+  }
 }
 
