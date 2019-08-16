@@ -21,7 +21,10 @@ export class PictureComponent implements OnInit {
 
   constructor(public activatedRoute: ActivatedRoute,
     public router: Router,
-    public service: PictureService) { }
+    public service: PictureService) {
+
+
+    }
 
   ngOnInit() {
   }
@@ -38,7 +41,5 @@ export class PictureComponent implements OnInit {
   deletePic(item) {
 
   }
-  filechange(event) {
 
-  }
 }

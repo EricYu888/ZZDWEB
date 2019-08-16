@@ -37,8 +37,9 @@
                           </tr>
                           <tr *ngFor="let item of pictureList">
                             <td>{{item.title}}</td>
-                            <td>  <img *ngIf="validatorStr(item.imgUrl)" src="{{item.imgUrl}}" style="width:200px;height:200px;">
-                              <input *ngIf="!detailView" class="form-control" #newsFaceImage type=file accept="image/*" id="newsFaceImage" name="newsFaceImage" (change)="filechange($event)"></td>
+                            <td>
+                              <img *ngIf="validatorStr(item.imgUrl)" src="{{item.imgUrl}}" style="width:100px;height:100px;">
+                            </td>
                             <td style="text-align:center;">
                               <div class="form-actions">
                                   <button type="button" class="btn btn-info" (click)="jumpToModify(item)">修改</button> &nbsp;

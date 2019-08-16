@@ -9,6 +9,14 @@
             <app-validator-input #displayIndex [startValidator]="hasSubmit" [test]="validatorNum(picture.displayIndex)" [msg]="'请填写显示序号'" [readonly]="false"
                 [labelname]="'显示序号'" [(ngModel)]="picture.displayIndex" [placeholder]="'请输入显示序号'" [inputType]="'number'" [showRequired]='true'>
             </app-validator-input>
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label"><span style="color: red;">*</span>图片上传</label>
+                <label class="switch switch-primary" style="margin-left: 16px;">
+                    <img *ngIf="validatorStr(picture.imgUrl)" src="{{picture.imgUrl}}" style="width:100px;height:100px;">
+                    <input *ngIf="!detailView" class="form-control" #newsFaceImage type=file accept="image/*" id="newsFaceImage" name="newsFaceImage" (change)="filechange($event)">
+                  </label>
+            </div>
+
           </div>
           <!-- <div *ngIf="detailView">
             <div class="form-group row">
