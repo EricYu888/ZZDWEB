@@ -60,11 +60,7 @@ export const routes: Routes = [
         canActivate: [AuthGuard],
         loadChildren: './views/picture/picture.module#PictureModule'
       },
-      {
-        path: 'site',
-        canActivate: [AuthGuard],
-        loadChildren: './views/site/site.module#SiteModule'
-      },
+
       {
         path: 'tide',
         canActivate: [AuthGuard],
