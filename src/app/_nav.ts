@@ -45,12 +45,12 @@ export const navigation = [
   icon: 'icon-umbrella',
   role: 'admin'
 },
-{
-  name: '天气预报信息管理',
-  url: '/weatherInfo',
-  icon: 'icon-star',
-  role: 'admin'
-}
+// {
+//   name: '天气预报信息管理',
+//   url: '/weatherInfo',
+//   icon: 'icon-star',
+//   role: 'admin'
+// }
 
 // ,{
 //   name: '商户管理',

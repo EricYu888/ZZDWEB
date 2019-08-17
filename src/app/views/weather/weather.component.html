@@ -1,118 +1,71 @@
 <div class="animated fadeIn">
-  <div class="card">
-    <div class="card-body">
-      <!-- Nav tabs -->
-      <div id="ShortTerm" class="card">
-        <div class="card-header">
-          <h4>短期天气预报</h4>
-        </div>
-        <div class="card-body" *ngIf="!isShortTermCollapsed">
-          <ueditor #ForcastContent_ShortTerm name="weatherForecastShortTerm" [(ngModel)]="weatherForecast.ShortTerm">
-          </ueditor>
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary pull-right" (click)="save('ShortTerm')">保存</button>
-            <button type="reset" class="btn btn-primary pull-right" (click)="reset('ShortTerm')">重置</button>
-          </div>
-        </div>
-        <div class="card-footer">
-          <button type="button" class="btn btn-primary" (click)="isShortTermCollapsed = !isShortTermCollapsed">
-            <span *ngIf="isShortTermCollapsed">展开</span>
-            <span *ngIf="!isShortTermCollapsed">收起</span>
-          </button>
-        </div>
-      </div>
-      <div id="Xun" class="card">
-        <div class="card-header">
-          <h4>旬天气预报</h4>
-        </div>
-        <div class="card-body" *ngIf="!isXunCollapsed">
-          <ueditor #ForcastContent_Xun name="weatherForecastXun" [(ngModel)]="weatherForecast.Xun"></ueditor>
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary pull-right" (click)="save('Xun')">保存</button>
-            <button type="reset" class="btn btn-primary pull-right" (click)="reset('Xun')">重置</button>
-          </div>
-        </div>
-        <div class="card-footer">
-          <button type="button" class="btn btn-primary" (click)="isXunCollapsed = !isXunCollapsed">
-            <span *ngIf="isXunCollapsed">展开</span>
-            <span *ngIf="!isXunCollapsed">收起</span>
-          </button>
-        </div>
-      </div>
-      <div id="Month" class="card">
-        <div class="card-header">
-          <h4>月天气预报</h4>
-        </div>
-        <div class="card-body" *ngIf="!isMonthCollapsed">
-          <ueditor #ForcastContent_Month name="weatherForecastMonth" [(ngModel)]="weatherForecast.Month"></ueditor>
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary pull-right" (click)="save('Month')">保存</button>
-            <button type="reset" class="btn btn-primary pull-right" (click)="reset('Month')">重置</button>
-          </div>
-        </div>
-        <div class="card-footer">
-          <button type="button" class="btn btn-primary" (click)="isMonthCollapsed = !isMonthCollapsed">
-            <span *ngIf="isMonthCollapsed">展开</span>
-            <span *ngIf="!isMonthCollapsed">收起</span>
-          </button>
-        </div>
-      </div>
-      <div id="Quater" class="card">
-        <div class="card-header">
-          <h4>季天气预报</h4>
-        </div>
-        <div class="card-body" *ngIf="!isQuaterCollapsed">
-          <ueditor #ForcastContent_Quater name="weatherForecastQuater" [(ngModel)]="weatherForecast.Quater"></ueditor>
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary pull-right" (click)="save('Quater')">保存</button>
-            <button type="reset" class="btn btn-primary pull-right" (click)="reset('Quater')">重置</button>
-          </div>
-        </div>
-        <div class="card-footer">
-          <button type="button" class="btn btn-primary" (click)="isQuaterCollapsed = !isQuaterCollapsed">
-            <span *ngIf="isQuaterCollapsed">展开</span>
-            <span *ngIf="!isQuaterCollapsed">收起</span>
-          </button>
-        </div>
-      </div>
-      <div id="Year" class="card">
-        <div class="card-header">
-          <h4>年天气预报</h4>
-        </div>
-        <div class="card-body" *ngIf="!isYearCollapsed">
-          <ueditor #ForcastContent_Year name="weatherForecastYear" [(ngModel)]="weatherForecast.Year"></ueditor>
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary pull-right" (click)="save('Year')">保存</button>
-            <button type="reset" class="btn btn-primary pull-right" (click)="reset('Year')">重置</button>
-          </div>
-        </div>
-        <div class="card-footer">
-          <button type="button" class="btn btn-primary" (click)="isYearCollapsed = !isYearCollapsed">
-            <span *ngIf="isYearCollapsed">展开</span>
-            <span *ngIf="!isYearCollapsed">收起</span>
-          </button>
-        </div>
-      </div>
-      <div id="MonthReport" class="card" *ngIf="!isMonthReportCollapsed">
-        <div class="card-header">
-          <h4>月气候评估</h4>
-        </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
         <div class="card-body">
-          <ueditor #ForcastContent_MonthReport name="weatherForecastMonthReport"
-            [(ngModel)]="weatherForecast.MonthReport"></ueditor>
-            <div class="form-actions">
-              <button type="submit" class="btn btn-primary pull-right" (click)="save('MonthReport')">保存</button>
-              <button type="reset" class="btn btn-primary pull-right" (click)="reset('MonthReport')">重置</button>
+          <div class="form-inline">
+            <div class="col-sm-10 form-inline">
+              <div class="form-group filter-form-group">
+                <label for="shopidEl">标题</label>
+                <input type="text" name="title" class="form-control " [(ngModel)]="title">&nbsp;&nbsp;
+              </div>
+              <div class="form-group filter-form-group">
+                <label for="shopidEl">类型</label>
+                <select id="type" name="type" class="form-control" [(ngModel)]="type">
+                  <option value="0">--请选择--</option>
+                  <option value="1">短期天气预报</option>
+                  <option value="2">旬天气预报</option>
+                  <option value="3">月天气预报</option>
+                  <option value="4">季天气预报</option>
+                  <option value="5">年天气预报</option>
+                  <option value="6">月气候评估</option>
+                </select>
+              </div>
+              <button type="button" class="btn btn-success serarchbutton" (click)="getAll()">查询</button>&nbsp;&nbsp;
             </div>
-        </div>
-        <div class="card-footer">
-          <button type="button" class="btn btn-primary" (click)="isMonthReportCollapsed = !isMonthReportCollapsed">
-            <span *ngIf="isMonthReportCollapsed">展开</span>
-            <span *ngIf="!isMonthReportCollapsed">收起</span>
-          </button>
+            <div class="col-sm-2">
+              <button type="button" class="btn btn-primary newButton" (click)="addWeather()">新增</button>&nbsp;&nbsp;
+            </div>
+          </div>
+          <div style="height:20px"></div>
+          <div *ngFor="let alert of alertsDismiss">
+            <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+          </div>
+          <table class="table" style="margin-top:18px;text-align:center;">
+            <thead class="thead-light">
+              <tr>
+                <th>天气预报标题</th>
+                <th>类型</th>
+                <th>发布时间</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="!loading && weatherList.length==0">
+                <td colspan="3">没有相关数据</td>
+              </tr>
+              <tr *ngIf="loading">
+                <td colspan="3">正在载入数据...</td>
+              </tr>
+              <tr *ngFor="let item of weatherList">
+                <td>{{item.title}}</td>
+                <td>{{item.type}}</td>
+                <td>{{item.publishDate}}</td>
+                <td style="text-align:center;">
+                  <div class="form-actions">
+                    <button type="button" class="btn btn-info" (click)="jumpToModify(item)">修改</button> &nbsp;
+                    <button type="button" class="btn btn-danger" (click)="deleteNotice(item)">删除</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination [totalItems]="totalItems" [itemsPerPage]="pageSize" class="pagination-sm" previousText="&lsaquo;"
+            nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [boundaryLinks]="true" [rotate]="false"
+            (pageChanged)="pageChanged($event)" class="pull-right" [maxSize]="5"
+            [hidden]="!(!loading && noticeList.length!=0)"></pagination>
         </div>
       </div>
     </div>
   </div>
-  <!--/.col-->
 </div>
