@@ -1,26 +1,69 @@
 <div class="animated fadeIn">
   <div class="card">
     <div class="card-body">
-      <tabset>
-        <tab heading="短期天气预报">
-            <div [innerHTML]="weatherForecast.ShortTerm" ></div>
-        </tab>
-        <tab heading="旬天气预报">
-            <div [innerHTML]="weatherForecast.Xun" ></div>
-        </tab>
-        <tab heading="月天气预报">
-            <div [innerHTML]="weatherForecast.Month" ></div>
-        </tab>
-        <tab heading="季天气预报">
-            <div [innerHTML]="weatherForecast.Quater" ></div>
-        </tab>
-        <tab heading="年天气预报">
-            <div [innerHTML]="weatherForecast.Year" ></div>
-        </tab>
-        <tab heading="月气候评估">
-            <div [innerHTML]="weatherForecast.MonthReport" ></div>
-        </tab>
-      </tabset>
+      <div *ngIf="!detailView">
+        <app-validator-input #title [startValidator]="hasSubmit" [test]="validatorStr(weather.title)"
+          [msg]="'请填写天气预报标题'" [readonly]="false" [labelname]="'标题：'" [(ngModel)]="weather.title"
+          [placeholder]="'请输入天气预报标题'" [inputType]="'text'" [showRequired]='true'>
+        </app-validator-input>
+
+        <div class="form-group row">
+          <div class="col-md-2 col-form-label">类型：</div>
+          <div class="col-md-3 form-control" style="border: 0; height: auto">
+            <select id="type" name="type" class="form-control" [(ngModel)]="weather.type">
+              <option value="1">短期天气预报</option>
+              <option value="2">旬天气预报</option>
+              <option value="3">月天气预报</option>
+              <option value="4">季天气预报</option>
+              <option value="5">年天气预报</option>
+              <option value="6">月气候评估</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-2 col-form-label">内容：</div>
+          <div class="col-md-10 form-control" style="border: 0; height: auto">
+            <ueditor #pageContentEl name="newsContent" [(ngModel)]="weather.content" (onReady)="_ready($event)">
+            </ueditor>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="detailView">
+        <div class="form-group row">
+          <div class="col-md-2 col-form-label">标题：</div>
+          <div class="col-md-10 form-control" style="border: 0;">
+            {{weather.title}}
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-2 col-form-label">类型:</div>
+          <div class="col-md-10 form-control" style="border: 0;">
+            {{weather.type}}
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-2 col-form-label">发布时间:</div>
+          <div class="col-md-10 form-control" style="border: 0;">
+            {{weather.publishTime}}
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-2 col-form-label">内容 :</div>
+          <div class="col-md-10 form-control" style="border: 0;">
+            <div [innerHtml]="weather.content"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions" *ngIf="add" style="margin-top: 20px;">
+        <button type="submit" class="btn btn-primary pull-right" (click)="saveweather()">保存</button>
+      </div>
+      <div class="form-actions" *ngIf="modify" style="margin-top: 20px;">
+        <button type="submit" class="btn btn-primary pull-right" (click)="saveweather()">修改</button>
+      </div>
+      <div class="form-actions" *ngIf="detailView" style="margin-top: 20px;">
+        <button type="submit" class="btn btn-primary pull-right" (click)="clolseweather()">关闭</button>
+      </div>
     </div>
   </div>
 </div>

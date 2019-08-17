@@ -12,7 +12,13 @@ export class WeatherService {
   public setWeatherForecast(params): Promise<any> {
     return;
   }
-  public getWeatherForecast(params): Promise<any> {
+  public getWeatherDetail(params): Promise<any> {
+    return;
+  }
+  public AddWeather(params): Promise<any> {
+    return;
+  }
+  public UpdataWeather(params): Promise<any> {
     return;
   }
 }

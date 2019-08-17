@@ -7,6 +7,8 @@ import { WeatherInfoComponent } from './weather-info.component';
 import { WeatherInfoRoutingModule } from './weather-info-routing.module';
 
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { AppValidatorModule } from '../../components';
+import { UEditorModule } from 'ngx-ueditor'
 // import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
@@ -14,8 +16,19 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     CommonModule,
     FormsModule,
     WeatherInfoRoutingModule,
+    AppValidatorModule,
     // AlertModule.forRoot(),
     TabsModule,
+    UEditorModule.forRoot({
+      js: [
+        `../../../assets/ueditor/ueditor.config.js`,
+        `../../../assets/ueditor/ueditor.all.js`,
+      ],
+      // 默认前端配置项
+      options: {
+        UEDITOR_HOME_URL: '../../../assets/ueditor/'
+      }
+    })
   ],
   declarations: [WeatherInfoComponent]
 })
