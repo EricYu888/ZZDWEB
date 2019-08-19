@@ -26,13 +26,7 @@ export const navigation = [
   icon: 'icon-picture',
   role: 'admin'
 },
-{
-  name: '自动站点管理',
-  url: '/site',
-  icon: 'icon-flag',
-  role: 'admin'
-}
-,
+
 {
   name: '潮汐时刻管理',
   url: '/tide',
