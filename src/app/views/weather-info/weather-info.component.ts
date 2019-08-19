@@ -17,9 +17,9 @@ export class WeatherInfoComponent implements OnInit {
   modify = false;
   hasSubmit: boolean;
   weather = {
-    id: '',
+    id: null,
     title: '',
-    type: '1',
+    type: 1,
     content: '',
     publishTime: '',
     isActivated: true
@@ -66,13 +66,14 @@ export class WeatherInfoComponent implements OnInit {
 
   loadWeather() {
     this.loading = true;
-    const param = {
-      id: this.id
-    }
-    this.service.getWeatherDetail(param).then(res => {
+    this.service.getWeatherDetail(this.id).then(res => {
       this.loading = false;
-      if (res.code === 'SUCCESS') {
-
+      if (res.result.isSuccess) {
+        this.weather.id= res.result.data.id;
+        this.weather.title= res.result.data.title;
+        this.weather.type= res.result.data.type;
+        this.weather.content= res.result.data.content;
+        this.weather.publishTime= res.result.data.lastUpdatedD;
       }
     })
   }
@@ -83,7 +84,7 @@ export class WeatherInfoComponent implements OnInit {
       this.appLoadingService.showLoading();
       let callback = (res) => {
         this.appLoadingService.hideLoading();
-        if (res.code === 'SUCCESS') {
+        if (res.result.isSuccess) {
           let resultMsg = '';
           if (this.add) {
             resultMsg = 'addSuccess';
@@ -92,25 +93,18 @@ export class WeatherInfoComponent implements OnInit {
             this.appAlertService.addAlert({ type: 'info', msg: '修改成功' });
             resultMsg = 'modifySuccess';
           }
-          this.router.navigate(['/user'], { replaceUrl: true, queryParams: { result: resultMsg } });
-        } else if (res.code === 'EXPIRE') {
-          this.router.navigate(['/logout'], { replaceUrl: true });
-        } else {
-          if (res.msg === '用户已存在') {
-            // this.addMsg('error', '部门已存在!');
-            this.appAlertService.addAlert({ type: 'info', msg: '用户已存在!' });
-          }
-        }
+          this.router.navigate(['/weather'], { replaceUrl: true, queryParams: { result: resultMsg } });
+        } 
       }
       if (this.add) {
-        this.service.AddWeather(this.weather).then(callback);
+        this.service.AddWeather(this.weather.type, this.weather.title,this.weather.content).then(callback);
       } else if (this.modify) {
-        this.service.UpdataWeather(this.weather).then(callback);
+        this.service.UpdateWeather(this.weather.id,this.weather.type, this.weather.title,this.weather.content).then(callback);
       }
     }
   }
   clolseWeather() {
-
+    this.router.navigate(['/weather'], { replaceUrl: true});
   }
   validatorStr(str) {
     return !this.util.isEmptyStr(str);

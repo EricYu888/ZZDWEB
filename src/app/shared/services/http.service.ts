@@ -4,11 +4,10 @@ import { DOMAIN}  from './../../shared/constants';
 declare var require: any;
 // const DOMAIN = require('../config.json').DOMAIN;
 const headers = new HttpHeaders()
-    .set("Content-Type", "application/json")
+    .set("Content-Type", "application/json; charset=UTF-8")
     .set("Cache-control", "no-cache")
     .set("Pragma", "no-cache")
     .set("Expires", "0");
-
 @Injectable()
 
 export class HttpService {

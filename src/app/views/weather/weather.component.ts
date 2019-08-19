@@ -14,7 +14,7 @@ import { AppLoadingService } from '../../components/app-loading';
 })
 export class WeatherComponent implements OnInit {
   title = '';
-  type= '';
+  type = null;
   weatherList = [];
   loading = true;
   alertsDismiss: any = [];
@@ -29,27 +29,50 @@ export class WeatherComponent implements OnInit {
     public service: WeatherService,
     public appAlertService: AppAlertService) { }
 
-    ngOnInit() {
-    }
-  
-    getAll() {
-  
-    }
-    addWeather() {
-      this.router.navigate(['/weatherInfo'], { queryParams: { operate: 'add' } });
-    }
-    jumpToModify(item) {
-  
-    }
-    deleteWeather(item) {
-  
-    }
-    pageChanged(event) {
-  
-    }
-  
-    validatorStr(url) {
-  
-    }
+  ngOnInit() {
+    this.pageNum = 1;
+    this.pageSize = 20;
+
+    this.loadWeathers();
+  }
+
+  loadWeathers() {
+    this.loading = true;
+    this.service.getWeathers(this.type, this.pageSize, this.pageNum).then(res => {
+      this.loading = false;
+      console.log("res:", res);
+      if (res.result.isSuccess) {
+        this.weatherList = res.result.data;
+      }
+    })
+  }
+  getWeathers(){
+    this.pageNum = 1;
+    this.loadWeathers();
+  }
+  addWeather() {
+    this.router.navigate(['/weatherInfo'], { queryParams: { operate: 'add' } });
+  }
+  jumpToModify(item) {
+    this.router.navigate(['/weatherInfo'],{ queryParams: { operate: 'modify',id:item.id }});
+  }
+  deleteWeather(item) {
+    let id = item.id;
+    this.service.DeleteWeather(id).then(res => {
+      this.loading = false;
+      console.log("res:", res);
+      if (res.result.isSuccess) {
+        this.loadWeathers();
+      }
+    })
+  }
+  pageChanged(event) {
+    this.pageNum = event.page;
+    this.loadWeathers();
+  }
+
+  validatorStr(str) {
+    return !this.util.isEmptyStr(str);
+  }
 }
 

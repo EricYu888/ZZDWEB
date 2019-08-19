@@ -34,6 +34,10 @@ export class LoginComponent implements OnInit {
   }
 
   public judgeUser() {
+    
+    // sessionStorage.setItem('username', 'test user');
+    // this.router.navigate(['/user']);
+    // return;
     this.showloading();
     if (this.util.isEmptyStr(this.userName) || this.util.isEmptyStr(this.password)) {
       this.alertsDismiss.push({
