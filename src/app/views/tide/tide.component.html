@@ -56,7 +56,7 @@
             <pagination [totalItems]="totalItems" [itemsPerPage]="pageSize" [(ngModel)]="pageNum" class="pagination-sm"
               previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [boundaryLinks]="true"
               [rotate]="false" (pageChanged)="pageChanged($event)" class="pull-right" [maxSize]="5"
-              [hidden]="!(!loading && noticeList.length!=0)"></pagination>
+              [hidden]="!(!loading && tideList.length!=0)"></pagination>
           </div>
         </div>
       </div>

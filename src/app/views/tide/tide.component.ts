@@ -27,7 +27,7 @@ export class TideComponent implements OnInit {
       from_date: this.fromDate,
       to_date:this.toDate,
     };
-    this.loading = true;
+  this.loading = true;
     this.service.getTideInfo(params).then(res => {
       if (res.code === 'SUCCESS') {
         this.totalItems = res.data;
