@@ -7,9 +7,6 @@ const headers = new HttpHeaders()
     .set("Content-Type", "application/json; charset=UTF-8")
     .set("Cache-control", "no-cache")
     .set("Pragma", "no-cache")
-    .set("Access-Control-Allow-Credentials","true")
-    .set("Access-Control-Allow-Origin","*")
-    .set("Access-Control-Allow-Headers","application/json")
     .set("Expires", "0");
 @Injectable()
 
