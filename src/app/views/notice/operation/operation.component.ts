@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, ɵALLOW_MULTIPLE_PLATFORMS } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppAlertService } from '../../../components';
 import { UtilService } from '../../../shared/';
@@ -36,7 +36,7 @@ export class NoticeOperationComponent implements OnInit {
   @ViewChild('title') title;
   @ViewChild('newsAuthor') newsAuthor;
   @ViewChild('displayIndex') displayIndex;
-  // @ViewChild('pageContentEl') pageContentEl;
+  @ViewChild('pageContentEl') pageContentEl;
 
 
   constructor(
@@ -86,21 +86,22 @@ export class NoticeOperationComponent implements OnInit {
 
   saveNotice() {
     this.hasSubmit = true;
-    if (this.title.test) {
+
+    //if (this.newsAuthor.test && this.displayIndex.test && this.imeiCode.test) {
+    if (this.title.test && this.newsAuthor.test && this.displayIndex.test) {
       this.appLoadingService.showLoading();
       let callback = (res) => {
-        console.log(res)
         this.appLoadingService.hideLoading();
-        if (res.code === 'SUCCESS') {
+        if (res.result.isSuccess === true) {
           let resultMsg = '';
           if (this.add) {
             resultMsg = 'addSuccess';
-            this.appAlertService.addAlert({ type: 'info', msg: '添加成功' });
+             this.appAlertService.addAlert({ type: 'info', msg: '添加成功' });
           } else if (this.modify) {
             this.appAlertService.addAlert({ type: 'info', msg: '修改成功' });
             resultMsg = 'modifySuccess';
           }
-          this.router.navigate(['/user'], { replaceUrl: true, queryParams: { result: resultMsg } });
+          this.router.navigate(['/notice'], { replaceUrl: true, queryParams: { result: resultMsg } });
         } else if (res.code === 'EXPIRE') {
           this.router.navigate(['/logout'], { replaceUrl: true });
         } else {
@@ -111,7 +112,7 @@ export class NoticeOperationComponent implements OnInit {
         }
       }
       if (this.add) {
-        console.log(this.notice)
+     
         let param={
           Title:this.notice.title,
           NewsAuthor:this.notice.newsAuthor,
@@ -123,6 +124,10 @@ export class NoticeOperationComponent implements OnInit {
         this.service.UpdataNotice(this.notice).then(callback);
       }
     }
+    else
+    {
+     
+    }
   }
   clolseNotice() {
 
@@ -130,14 +135,19 @@ export class NoticeOperationComponent implements OnInit {
   validatorStr(str) {
     return !this.util.isEmptyStr(str);
   }
-  validatorPhone(str) {
-    return this.util.validatorPhone(str);
-  }
+   
   validatorNum(str) {
     return this.util.validatorNum(str);
   }
   changeStatus() {
     // console.log(!this.user.isActivated)
   }
-  
+  private addMsg(type, msg) {
+    this.alertsDismiss = [];
+    this.alertsDismiss.push({
+      type: type,
+      msg: `${msg}`,
+      timeout: 5000
+    });
+  }
 }

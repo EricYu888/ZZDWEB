@@ -5,23 +5,23 @@
             <app-validator-input #title [startValidator]="hasSubmit" [test]="validatorStr(notice.title)" [msg]="'请填写通知标题'" [readonly]="false"
                 [labelname]="'通知标题：'" [(ngModel)]="notice.title" [placeholder]="'请输入通知标题'" [inputType]="'text'" [showRequired]='true'>
             </app-validator-input>
-            <app-validator-input #newsAuthor [startValidator]="hasSubmit" [test]="validatorPhone(notice.newsAuthor)" [msg]="'请填写发布人'" [readonly]="false"
+            <app-validator-input #newsAuthor [startValidator]="hasSubmit" [test]="validatorStr(notice.newsAuthor)" [msg]="'请填写发布人'" [readonly]="false"
                 [labelname]="'发布人'" [(ngModel)]="notice.newsAuthor" [placeholder]="'请输入发布人'" [inputType]="'text'" [showRequired]='true'>
             </app-validator-input>
             <app-validator-input #displayIndex [startValidator]="hasSubmit" [test]="validatorNum(notice.displayIndex)" [msg]="'请填写显示序号'" [readonly]="false"
                 [labelname]="'显示序号'" [(ngModel)]="notice.displayIndex" [placeholder]="'请输入显示序号'" [inputType]="'number'" [showRequired]='true'>
             </app-validator-input>
-            <!-- <div class="form-group row">
+            <div class="form-group row">
                 <div class="col-md-2 col-form-label" >内容：</div>
                 <div class="col-md-10 form-control" style="border: 0; height: auto">
                     <ueditor #pageContentEl
                     name="newsContent"
                     [(ngModel)]="notice.newsContent"
-                    (onReady)="_ready($event)"
+                 
                     >
                  </ueditor>
                 </div>
-            </div> -->
+            </div>
             </div>
             <div *ngIf="detailView">
               <div class="form-group row">

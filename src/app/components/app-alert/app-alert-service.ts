@@ -10,6 +10,7 @@ export class AppAlertService {
 
 
     addAlert(message: { type: "success"|"info"|"danger"; msg: string; }) {
+        console.log(message)
         this.Source.next(message);
     }
 }

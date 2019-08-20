@@ -43,13 +43,8 @@ export class HttpService {
     }
     public post(url, body): Promise<any> {
         return new Promise((resolve, reject) => {
-            console.log(url)
-            this.http.post(`${DOMAIN}${url}`, body, { headers }).subscribe(data => {
-                console.log("data")
-                console.log(data)
-
+            this.http.post(`${DOMAIN}${url}`, body, { headers }).subscribe(data => {       
                 resolve(data);
-
             }), (err: HttpErrorResponse) => {
                 if (err.error instanceof Error) {
                     console.log('An error occurred:', err.error.message);
