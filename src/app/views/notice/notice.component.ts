@@ -15,21 +15,32 @@ export class NoticeComponent implements OnInit {
   alertsDismiss: any = [];
   totalItems: number;
   pageNum: number;
-  pageSize: number;
+  pageSize = 10;
 
 
   constructor(public activatedRoute: ActivatedRoute,
     public router: Router,
     public service: NoticeService,
   ) {
-
+    if(!this.pageNum)
+    {
+      this.pageNum=1;
+    }
   }
 
   ngOnInit() {
+    this.getAll();
   }
 
   getAll() {
-
+    const params = {
+      title: '',
+      pageNum:this.pageNum,
+      pageSize:this.pageSize
+    }
+    this.service.getAllNotices(params).then(res=>{
+      console.log(res)
+    })
   }
   addNotice() {
     this.router.navigate(['/notice/operation'], { queryParams: { operate: 'add' } });

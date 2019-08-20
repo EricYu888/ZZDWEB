@@ -10,7 +10,7 @@ export class NoticeService {
   }
 
   public getAllNotices(params): Promise<any> {
-    return;
+      return this.service.post('notice/GetAll',params);
   }
   public getNoticeDetail(params): Promise<any> {
     return;
@@ -19,6 +19,6 @@ export class NoticeService {
     return;
   }
   public AddNotice(params): Promise<any> {
-    return;
+    return this.service.post('notice/AddNotice',params);
   }
 }

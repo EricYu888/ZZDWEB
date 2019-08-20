@@ -7,6 +7,9 @@ const headers = new HttpHeaders()
     .set("Content-Type", "application/json; charset=UTF-8")
     .set("Cache-control", "no-cache")
     .set("Pragma", "no-cache")
+    .set("Access-Control-Allow-Credentials","true")
+    .set("Access-Control-Allow-Origin","*")
+    .set("Access-Control-Allow-Headers","application/json")
     .set("Expires", "0");
 @Injectable()
 
@@ -43,7 +46,11 @@ export class HttpService {
     }
     public post(url, body): Promise<any> {
         return new Promise((resolve, reject) => {
+            console.log(url)
             this.http.post(`${DOMAIN}${url}`, body, { headers }).subscribe(data => {
+                console.log("data")
+                console.log(data)
+
                 resolve(data);
 
             }), (err: HttpErrorResponse) => {

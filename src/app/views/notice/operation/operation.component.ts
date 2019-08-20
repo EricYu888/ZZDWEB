@@ -36,7 +36,7 @@ export class NoticeOperationComponent implements OnInit {
   @ViewChild('title') title;
   @ViewChild('newsAuthor') newsAuthor;
   @ViewChild('displayIndex') displayIndex;
-  @ViewChild('pageContentEl') pageContentEl;
+  // @ViewChild('pageContentEl') pageContentEl;
 
 
   constructor(
@@ -89,6 +89,7 @@ export class NoticeOperationComponent implements OnInit {
     if (this.title.test) {
       this.appLoadingService.showLoading();
       let callback = (res) => {
+        console.log(res)
         this.appLoadingService.hideLoading();
         if (res.code === 'SUCCESS') {
           let resultMsg = '';
@@ -110,7 +111,14 @@ export class NoticeOperationComponent implements OnInit {
         }
       }
       if (this.add) {
-        this.service.AddNotice(this.notice).then(callback);
+        console.log(this.notice)
+        let param={
+          Title:this.notice.title,
+          NewsAuthor:this.notice.newsAuthor,
+          DisplayIndex:this.notice.displayIndex,
+          NewsContent:this.notice.newsContent
+        }
+        this.service.AddNotice(param).then(callback);
       } else if (this.modify) {
         this.service.UpdataNotice(this.notice).then(callback);
       }
@@ -131,8 +139,5 @@ export class NoticeOperationComponent implements OnInit {
   changeStatus() {
     // console.log(!this.user.isActivated)
   }
-  _ready(event) {
-    console.log(event);
-    //  this.pageContentEl.Instance.iframe.clientHeight = 200;
-  }
+  
 }

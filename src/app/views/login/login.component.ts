@@ -48,10 +48,12 @@ export class LoginComponent implements OnInit {
       this.endloading()
       return;
     } else {
-      this.loginDao.login({ username: this.userName, password: this.password }).then(res => {
+      this.loginDao.login({ userName: this.userName, password: this.password }).then(res => {
         if (res.result.isSuccess) {
           sessionStorage.setItem('username', res.result.data[0].username)
           console.log(res.result.data[0].username)
+          // console.log('werwer')
+          // sessionStorage.setItem('username','admin')
           this.router.navigate(['/user']);
         } else {
           this.alertsDismiss.push({

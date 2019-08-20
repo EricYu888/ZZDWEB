@@ -11,7 +11,7 @@
             <app-validator-input #displayIndex [startValidator]="hasSubmit" [test]="validatorNum(notice.displayIndex)" [msg]="'请填写显示序号'" [readonly]="false"
                 [labelname]="'显示序号'" [(ngModel)]="notice.displayIndex" [placeholder]="'请输入显示序号'" [inputType]="'number'" [showRequired]='true'>
             </app-validator-input>
-            <div class="form-group row">
+            <!-- <div class="form-group row">
                 <div class="col-md-2 col-form-label" >内容：</div>
                 <div class="col-md-10 form-control" style="border: 0; height: auto">
                     <ueditor #pageContentEl
@@ -21,7 +21,7 @@
                     >
                  </ueditor>
                 </div>
-            </div>
+            </div> -->
             </div>
             <div *ngIf="detailView">
               <div class="form-group row">
