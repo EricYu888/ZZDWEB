@@ -10,8 +10,10 @@ export class WeatherService {
 
   }
 
-  public getWeathers(type:number, pageSize:number, pageIndex:number): Promise<any> {
+  public getWeathers(title:string, type:number, pageSize:number, pageIndex:number): Promise<any> {
     let params = {
+      "title": (title.trim() == "")?null:title.trim(),
+      "type": (type == 0)?null:type,
       "pageNumber": pageIndex,
       "pageSize": pageSize
     };
