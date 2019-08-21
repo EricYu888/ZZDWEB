@@ -98,3 +98,4 @@ export class NoticeComponent implements OnInit {
     });
   }
 
+}
