@@ -1,68 +1,76 @@
 <div class="animated fadeIn">
-  <div class="row">
-      <div class="col-sm-12">
-          <div class="card">
-              <div class="card-body">
-                  <div class="form-inline">
-                      <div class="col-sm-8 form-inline">
-                        <div class="form-group filter-form-group">
-                          <label for="shopidEl">用户姓名/手机号</label>
-                          <input type="text" name="department" class="form-control " [(ngModel)]="user">&nbsp;&nbsp;
-                      </div>
-                      <div class="form-group filter-form-group">
-                            <label for="shop">是否启用</label>
-                            <select name="shopidEl" class="form-control" [(ngModel)]="isActivated">
-                                <option value="">所有</option>
-                                <option value="1">启用</option>
-                                <option value="0">禁用</option>
-                            </select>
-                      </div>
-                      <button type="button" class="btn btn-success serarchbutton" (click)="getAll()">查询</button>&nbsp;&nbsp;
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-inline">
+                        <div class="col-sm-8 form-inline">
+                            <div class="form-group filter-form-group">
+                                <label for="shopidEl">用户姓名/手机号</label>
+                                <input type="text" name="user" class="form-control " [(ngModel)]="user">&nbsp;&nbsp;
+                            </div>
+                            <div class="form-group filter-form-group">
+                                <label for="shop">是否启用</label>
+                                <select name="shopidEl" class="form-control" [(ngModel)]="isActivated">
+                                    <option value="">所有</option>
+                                    <option value="1">启用</option>
+                                    <option value="0">禁用</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-success serarchbutton"
+                                (click)="getAll()">查询</button>&nbsp;&nbsp;
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="button" class="btn btn-primary newButton"
+                                (click)="addUser()">新增</button>&nbsp;&nbsp;
+                        </div>
                     </div>
-                      <div class="col-sm-3" >
-                          <button type="button" class="btn btn-primary newButton" (click)="addUser()">新增</button>&nbsp;&nbsp;
-                      </div>
-                  </div>
-                  <div style="height:20px"></div>
-                   <div *ngFor="let alert of alertsDismiss">
-                      <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
-                  </div>
-                  <table class="table" style="margin-top:18px;text-align:center;">
-                      <thead class="thead-light">
-                          <tr style=" border: 1px solid #e4e7ea;">
-                              <th>用户姓名</th>
-                              <th>手机号</th>
-                              <th>手机IMEI码</th>
-                              <th>用户状态</th>
-                              <th>操作</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr *ngIf="!loading && userList.length==0">
-                              <td colspan="5">没有相关数据</td>
-                          </tr>
-                          <tr *ngIf="loading">
-                              <td colspan="5">正在载入数据...</td>
-                          </tr>
-                          <tr *ngFor="let item of userList">
-                            <td>{{item.areaName}}</td>
-                            <td>{{item.stlc}}</td>
-                            <td>{{item.stlc}}</td>
-                            <td>{{item.stlc}}</td>
-                            <td style="text-align:center;">
-                              <div class="form-actions">
-                                  <button *ngIf="item.isActivated==='0'" type="button" class="btn btn-success" (click)="startUser(item)">启用</button>
-                                  <button *ngIf="item.isActivated==='1'" type="button" class="btn btn-warning" (click)="stopUser(item)">禁用</button> &nbsp;
-                                  <button type="button" class="btn btn-info" (click)="jumpToModify(item)">修改</button> &nbsp;
-                              </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                  </table>
-                  <pagination [totalItems]="totalItems" [itemsPerPage]="pageSize" class="pagination-sm" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [boundaryLinks]="true" [rotate]="false" (pageChanged)="pageChanged($event)" class="pull-right"
-                  [maxSize]="5" [hidden]="!(!loading && userList.length!=0)"></pagination>
-              </div>
-          </div>
-      </div>
-  </div>
+                    <div style="height:20px"></div>
+                    <div *ngFor="let alert of alertsDismiss">
+                        <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+                    </div>
+                    <table class="table" style="margin-top:18px;text-align:center;">
+                        <thead class="thead-light">
+                            <tr style=" border: 1px solid #e4e7ea;">
+                                <th>用户姓名</th>
+                                <th>手机号</th>
+                                <th>手机IMEI码</th>
+                                <th>用户状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="!loading && userList.length==0">
+                                <td colspan="5">没有相关数据</td>
+                            </tr>
+                            <tr *ngIf="loading">
+                                <td colspan="5">正在载入数据...</td>
+                            </tr>
+                            <tr *ngFor="let item of userList">
+                                <td>{{item.accountName}}</td>
+                                <td>{{item.userName}}</td>
+                                <td>{{item.imeiCode}}</td>
+                                <td>{{item.isActivated==='1'?'启用':'停用'}}</td>
+                                <td style="text-align:center;">
+                                    <div class="form-actions">
+                                        <button type="button" class="btn btn-info operateButton"
+                                            (click)="jumpToModify(item)">修改</button> &nbsp;
+                                        <button *ngIf="item.isActivated==='0'" type="button" class="btn btn-success operateButton"
+                                            (click)="startUser(item)">启用</button>
+                                        <button *ngIf="item.isActivated==='1'" type="button" class="btn btn-warning operateButton"
+                                            (click)="stopUser(item)">禁用</button> &nbsp;
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination [totalItems]="totalItems" [itemsPerPage]="pageSize" class="pagination-sm"
+                        previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
+                        [boundaryLinks]="true" [rotate]="false" (pageChanged)="pageChanged($event)" class="pull-right"
+                        [maxSize]="5" [hidden]="!(!loading && userList.length!=0)"></pagination>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

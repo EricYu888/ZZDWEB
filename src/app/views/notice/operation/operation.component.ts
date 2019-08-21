@@ -26,7 +26,7 @@ export class NoticeOperationComponent implements OnInit {
     newsAuthor: '',
     newsContent: '',
     publishTime: '',
-    displayIndex: '',
+    // displayIndex: '',
     isActivated: true
   };
   detailView = false;
@@ -35,7 +35,7 @@ export class NoticeOperationComponent implements OnInit {
   alertsDismiss: any = [];
   @ViewChild('title') title;
   @ViewChild('newsAuthor') newsAuthor;
-  @ViewChild('displayIndex') displayIndex;
+  // @ViewChild('displayIndex') displayIndex;
   @ViewChild('pageContentEl') pageContentEl;
 
 
@@ -78,8 +78,10 @@ export class NoticeOperationComponent implements OnInit {
     }
     this.service.getNoticeDetail(param).then(res => {
       this.loading = false;
-      if (res.code === 'SUCCESS') {
-
+      if (res.result.isSuccess === true) {
+        this.notice.title = res.result.data.title;
+        this.notice.newsAuthor = res.result.data.newsAuthor;
+        this.notice.newsContent = res.result.data.newsContent;
       }
     })
   }
@@ -88,7 +90,7 @@ export class NoticeOperationComponent implements OnInit {
     this.hasSubmit = true;
 
     //if (this.newsAuthor.test && this.displayIndex.test && this.imeiCode.test) {
-    if (this.title.test && this.newsAuthor.test && this.displayIndex.test) {
+    if (this.title.test && this.newsAuthor.test) {
       this.appLoadingService.showLoading();
       let callback = (res) => {
         this.appLoadingService.hideLoading();
@@ -96,7 +98,7 @@ export class NoticeOperationComponent implements OnInit {
           let resultMsg = '';
           if (this.add) {
             resultMsg = 'addSuccess';
-             this.appAlertService.addAlert({ type: 'info', msg: '添加成功' });
+            this.appAlertService.addAlert({ type: 'info', msg: '添加成功' });
           } else if (this.modify) {
             this.appAlertService.addAlert({ type: 'info', msg: '修改成功' });
             resultMsg = 'modifySuccess';
@@ -112,21 +114,26 @@ export class NoticeOperationComponent implements OnInit {
         }
       }
       if (this.add) {
-     
-        let param={
-          Title:this.notice.title,
-          NewsAuthor:this.notice.newsAuthor,
-          DisplayIndex:this.notice.displayIndex,
-          NewsContent:this.notice.newsContent
+
+        let param = {
+          Title: this.notice.title,
+          NewsAuthor: this.notice.newsAuthor,
+          NewsContent: this.notice.newsContent
         }
         this.service.AddNotice(param).then(callback);
       } else if (this.modify) {
-        this.service.UpdataNotice(this.notice).then(callback);
+        let param = {
+          id: this.id,
+          Title: this.notice.title,
+          NewsAuthor: this.notice.newsAuthor,
+          NewsContent: this.notice.newsContent
+        }
+
+        this.service.UpdataNotice(param).then(callback);
       }
     }
-    else
-    {
-     
+    else {
+
     }
   }
   clolseNotice() {
@@ -135,7 +142,7 @@ export class NoticeOperationComponent implements OnInit {
   validatorStr(str) {
     return !this.util.isEmptyStr(str);
   }
-   
+
   validatorNum(str) {
     return this.util.validatorNum(str);
   }
@@ -147,7 +154,7 @@ export class NoticeOperationComponent implements OnInit {
     this.alertsDismiss.push({
       type: type,
       msg: `${msg}`,
-      timeout: 5000
+      timeout: 3000
     });
   }
 }

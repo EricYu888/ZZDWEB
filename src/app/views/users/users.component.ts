@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UsersService } from './../../shared/services/users.service'
+import { UsersService } from './../../shared/services/users.service';
+import { AppModalService } from '../../components';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -18,15 +19,35 @@ export class UsersComponent implements OnInit {
   pageSize: number;
 
   constructor(public userService: UsersService,
-    public router: Router
-  ) { }
+    public activatedRoute: ActivatedRoute,
+    public router: Router,
+    public appModelService: AppModalService
+  ) {
+    if (!this.pageNum) {
+      confirm
+      this.pageNum = 1;
+    }
+  }
 
   ngOnInit() {
     this.getAll();
   }
 
   getAll() {
-
+    const params = {
+      searchContent: this.user,
+      isActivated: this.isActivated,
+      pageNumber: this.pageNum,
+      pageSize: this.pageSize
+    }
+    this.userService.getAllUsers(params).then(res => {
+      this.loading = false;
+      console.log(res)
+      if (res.result.isSuccess) {
+        this.userList = res.result.data;
+        this.totalItems = res.result.total;
+      }
+    })
   }
 
 
@@ -34,12 +55,12 @@ export class UsersComponent implements OnInit {
     this.router.navigate(['/user/operation'], { queryParams: { operate: 'add' } });
   }
   jumpToModify(item) {
-
+    this.router.navigate(['/user/operation'], { queryParams: { operate: 'modify', id: item.id } })
   }
   startUser(item) {
 
   }
-  stopUser() {
+  stopUser(item) {
 
   }
 }

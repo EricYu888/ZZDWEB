@@ -12,15 +12,15 @@ export class UsersService {
  
 
   public getAllUsers(params): Promise<any> {
-    return;
+    return this.service.post('account/GetAll',params);
   }
   public getUserDetail(params): Promise<any> {
-    return;
+    return this.service.post('account/GetDetail',params);;
   }
   public UpdataUser(params): Promise<any> {
-    return;
+    return this.service.post('account/Update',params);
   }
   public AddUser(params): Promise<any> {
-    return;
+    return this.service.post('account/Add',params);
   }
 }

@@ -20,17 +20,17 @@ export class UserOperationComponent implements OnInit {
   modify = false;
   hasSubmit: boolean;
   user = {
+    accountName: '',
     userName: '',
-    phoneNum: '',
     IMEICode: '',
-    isActivated: true
+    isActivated: '1'
   };
 
   loading: any;
   activitelist = [];
   alertsDismiss: any = [];
+  @ViewChild('accountName') accountName;
   @ViewChild('userName') userName;
-  @ViewChild('phoneNum') phoneNum;
   @ViewChild('IMEICode') imeiCode;
 
   constructor(
@@ -76,22 +76,22 @@ export class UserOperationComponent implements OnInit {
     }
     this.service.getUserDetail(param).then(res => {
       this.loading = false;
-      if (res.code === 'SUCCESS') {
-        this.user.userName = res.data.userName;
-        this.user.phoneNum = res.data.phoneNum;
-        this.user.IMEICode = res.data.IMEICode;
-        this.user.isActivated = res.data.isActivated;
+      if (res.result.isSuccess) {
+        this.user.accountName = res.result.data.accountName;
+        this.user.userName = res.result.data.userName;
+        this.user.IMEICode = res.result.data.imeiCode;
+        this.user.isActivated = res.result.data.isActivated;
       }
     })
   }
 
   saveUser() {
     this.hasSubmit = true;
-    if (this.userName.test && this.phoneNum.test && this.imeiCode.test) {
+    if (this.accountName.test && this.userName.test && this.imeiCode.test) {
       this.appLoadingService.showLoading();
       let callback = (res) => {
         this.appLoadingService.hideLoading();
-        if (res.code === 'SUCCESS') {
+        if (res.result.isSuccess) {
           let resultMsg = '';
           if (this.add) {
             resultMsg = 'addSuccess';
@@ -105,7 +105,6 @@ export class UserOperationComponent implements OnInit {
           this.router.navigate(['/logout'], { replaceUrl: true });
         } else {
           if (res.msg === '用户已存在') {
-            // this.addMsg('error', '部门已存在!');
             this.appAlertService.addAlert({ type: 'info', msg: '用户已存在!' });
           }
         }
