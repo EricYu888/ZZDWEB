@@ -17,6 +17,7 @@ export class UsersComponent implements OnInit {
   totalItems: number;
   pageNum: number;
   pageSize: number;
+  currentItem;
 
   constructor(public userService: UsersService,
     public activatedRoute: ActivatedRoute,
@@ -42,7 +43,6 @@ export class UsersComponent implements OnInit {
     }
     this.userService.getAllUsers(params).then(res => {
       this.loading = false;
-      console.log(res)
       if (res.result.isSuccess) {
         this.userList = res.result.data;
         this.totalItems = res.result.total;
@@ -59,8 +59,61 @@ export class UsersComponent implements OnInit {
   }
   startUser(item) {
 
+    this.currentItem = item.id;
+    let okCallback = () => {
+      let id = this.currentItem;
+      this.currentItem = null;
+      this.userService.changeStatus({ id: item.id, isActivated: "1" }).then(res => {
+        if (res.result.isSuccess) {
+          this.addMsg('success', '启用成功！')
+          this.getAll();
+        } else {
+          this.addMsg('danger', res.result.err)
+        }
+      })
+    }
+    let cancelCallback = () => {
+      this.currentItem = null;
+    }
+    this.appModelService.showModal({
+      type: 'confirm',
+      modalContent: '您确定要启用该用户么？',
+      okcallback: okCallback,
+      cancelcallback: cancelCallback
+    })
+
+
   }
   stopUser(item) {
-
+    this.currentItem = item.id;
+    let okCallback = () => {
+      let id = this.currentItem;
+      this.currentItem = null;
+      this.userService.changeStatus({ id: item.id, isActivated: "0" }).then(res => {
+        if (res.result.isSuccess) {
+          this.addMsg('success', '禁用成功！')
+          this.getAll();
+        } else {
+          this.addMsg('danger', res.result.err)
+        }
+      })
+    }
+    let cancelCallback = () => {
+      this.currentItem = null;
+    }
+    this.appModelService.showModal({
+      type: 'confirm',
+      modalContent: '您确定要禁用该用户么？',
+      okcallback: okCallback,
+      cancelcallback: cancelCallback
+    })
+  }
+  private addMsg(type, msg) {
+    this.alertsDismiss = [];
+    this.alertsDismiss.push({
+      type: type,
+      msg: `${msg}`,
+      timeout: 5000
+    });
   }
 }

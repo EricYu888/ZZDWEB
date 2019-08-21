@@ -23,7 +23,9 @@ export class UserOperationComponent implements OnInit {
     accountName: '',
     userName: '',
     IMEICode: '',
+    isActivatedFlag: true,
     isActivated: '1'
+
   };
 
   loading: any;
@@ -80,7 +82,9 @@ export class UserOperationComponent implements OnInit {
         this.user.accountName = res.result.data.accountName;
         this.user.userName = res.result.data.userName;
         this.user.IMEICode = res.result.data.imeiCode;
+        this.user.isActivatedFlag = res.result.data.isActivated === '1' ? true : false;
         this.user.isActivated = res.result.data.isActivated;
+        // console.log(res.result.data.isActivated)
       }
     })
   }
@@ -110,13 +114,22 @@ export class UserOperationComponent implements OnInit {
         }
       }
       if (this.add) {
+        // this.user.isActivatedFlag 
+        this.user.isActivated = this.user.isActivatedFlag ? "1" : "0";
         this.service.AddUser(this.user).then(callback);
       } else if (this.modify) {
+        this.user.isActivated = this.user.isActivatedFlag ? "1" : "0";
+        console.log(this.user)
         this.service.UpdataUser(this.user).then(callback);
       }
     }
   }
   changeStatus() {
-    console.log(!this.user.isActivated)
+    if (this.user.isActivatedFlag) {
+      this.user.isActivated = '1';
+    }
+    else {
+      this.user.isActivated = '0';
+    }
   }
 }

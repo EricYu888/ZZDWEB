@@ -9,18 +9,21 @@ export class UsersService {
 
   }
 
- 
+
 
   public getAllUsers(params): Promise<any> {
-    return this.service.post('account/GetAll',params);
+    return this.service.post('account/GetAll', params);
   }
   public getUserDetail(params): Promise<any> {
-    return this.service.post('account/GetDetail',params);;
+    return this.service.post('account/GetDetail', params);;
   }
   public UpdataUser(params): Promise<any> {
-    return this.service.post('account/Update',params);
+    return this.service.post('account/Update', params);
   }
   public AddUser(params): Promise<any> {
-    return this.service.post('account/Add',params);
+    return this.service.post('account/Add', params);
+  }
+  public changeStatus(params): Promise<any> {
+    return this.service.post('account/ChangeStatus', params);
   }
 }

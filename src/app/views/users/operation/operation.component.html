@@ -12,7 +12,7 @@
               <div class="form-group row">
                   <label class="col-md-2 col-form-label"><span style="color: red;">*</span>激活</label>
                   <label class="switch switch-primary" style="margin-left: 16px;">
-                    <input #status checked="true" class="switch-input" [(ngModel)]="user.isActivated"  (click)="changeStatus()" type="checkbox" style="display: none" >
+                    <input #status checked="false" class="switch-input" [(ngModel)]="user.isActivatedFlag"  (click)="changeStatus()" type="checkbox" style="display: none" >
                     <span class="switch-slider"></span>
                   </label>
               </div>
