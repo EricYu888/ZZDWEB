@@ -56,14 +56,12 @@
       </div>
 
       <div class="form-actions" *ngIf="add" style="margin-top: 20px;">
-        <button type="submit" class="btn btn-primary pull-right" (click)="saveweather()">保存</button>
+        <button type="submit" class="btn btn-primary pull-right" (click)="saveWeather()">保存</button>
       </div>
       <div class="form-actions" *ngIf="modify" style="margin-top: 20px;">
-        <button type="submit" class="btn btn-primary pull-right" (click)="saveweather()">修改</button>
+        <button type="submit" class="btn btn-primary pull-right" (click)="saveWeather()">修改</button>
       </div>
-      <div class="form-actions" *ngIf="detailView" style="margin-top: 20px;">
-        <button type="submit" class="btn btn-primary pull-right" (click)="clolseweather()">关闭</button>
-      </div>
+      <button type="submit" class="btn btn-primary pull-right" (click)="clolseWeather()">关闭</button>
     </div>
   </div>
 </div>

@@ -43,12 +43,16 @@ export class WeatherComponent implements OnInit {
       console.log("res:", res);
       if (res.result.isSuccess) {
         this.weatherList = res.result.data;
+        this.totalItems = res.result.total;
       }
     })
   }
   getWeathers(){
     this.pageNum = 1;
     this.loadWeathers();
+  }
+  viewWeather(item){
+    this.router.navigate(['/weatherInfo'], { queryParams: {id:item.id } });
   }
   addWeather() {
     this.router.navigate(['/weatherInfo'], { queryParams: { operate: 'add' } });

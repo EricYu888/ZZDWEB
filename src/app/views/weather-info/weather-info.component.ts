@@ -73,12 +73,12 @@ export class WeatherInfoComponent implements OnInit {
         this.weather.title= res.result.data.title;
         this.weather.type= res.result.data.type;
         this.weather.content= res.result.data.content;
-        this.weather.publishTime= res.result.data.lastUpdatedD;
+        this.weather.publishTime= res.result.data.lastModificationTime;
       }
     })
   }
 
-  saveWeather() {
+  saveWeather() {console.log("asdfasdfsdf");
     this.hasSubmit = true;
     if (this.title.test) {
       this.appLoadingService.showLoading();
@@ -96,9 +96,9 @@ export class WeatherInfoComponent implements OnInit {
           this.router.navigate(['/weather'], { replaceUrl: true, queryParams: { result: resultMsg } });
         } 
       }
-      if (this.add) {
+      if (this.add) {console.log("add weather");
         this.service.AddWeather(this.weather.type, this.weather.title,this.weather.content).then(callback);
-      } else if (this.modify) {
+      } else if (this.modify) {console.log("modify weather");
         this.service.UpdateWeather(this.weather.id,this.weather.type, this.weather.title,this.weather.content).then(callback);
       }
     }
