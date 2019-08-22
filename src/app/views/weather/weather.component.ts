@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppAlertService } from '../../components';
 import { UtilService } from '../../shared/';
@@ -18,9 +18,12 @@ export class WeatherComponent implements OnInit {
   weatherList = [];
   loading = true;
   alertsDismiss: any = [];
-  totalItems: number;
-  pageNum: number;
-  pageSize: number;
+  totalPages: number;
+  pageSize: number = 3;
+  @Input() pageNum: number;
+  @Input() totalItems: number = 20;
+  @Output() pageChanges: EventEmitter<Page> = new EventEmitter();
+
 
   constructor(public activatedRoute: ActivatedRoute,
     public router: Router,
@@ -31,34 +34,39 @@ export class WeatherComponent implements OnInit {
 
   ngOnInit() {
     this.pageNum = 1;
-    this.pageSize = 20;
+    this.pageSize = 3;
 
     this.loadWeathers();
   }
 
-  loadWeathers() {
+  loadWeathers(event = null) {
     this.loading = true;
-    this.service.getWeathers(this.title,this.type, this.pageSize, this.pageNum).then(res => {
+    this.service.getWeathers(this.title, this.type, this.pageSize, this.pageNum).then(res => {
       this.loading = false;
       console.log("res:", res);
       if (res.result.isSuccess) {
         this.weatherList = res.result.data;
-        this.totalItems = res.result.total;
+        this.calculatePaging(res.result.total,event);
       }
     })
   }
-  getWeathers(){
+  calculatePaging(total,event = null) {
+    this.totalItems = total;
+    this.totalPages = Math.floor((total - 1) / this.pageNum) + 1;
+    this.pageChanges.emit(event);
+  }
+  getWeathers() {
     this.pageNum = 1;
     this.loadWeathers();
   }
-  viewWeather(item){
-    this.router.navigate(['/weatherInfo'], { queryParams: {id:item.id } });
+  viewWeather(item) {
+    this.router.navigate(['/weatherInfo'], { queryParams: { id: item.id } });
   }
   addWeather() {
     this.router.navigate(['/weatherInfo'], { queryParams: { operate: 'add' } });
   }
   jumpToModify(item) {
-    this.router.navigate(['/weatherInfo'],{ queryParams: { operate: 'modify',id:item.id }});
+    this.router.navigate(['/weatherInfo'], { queryParams: { operate: 'modify', id: item.id } });
   }
   deleteWeather(item) {
     let id = item.id;
@@ -70,9 +78,10 @@ export class WeatherComponent implements OnInit {
       }
     })
   }
-  pageChanged(event) {
+  pageChanged(event) {console.log("event:",event);
     this.pageNum = event.page;
-    this.loadWeathers();
+    this.pageSize = event.itemsPerPage;
+    this.loadWeathers(event);
   }
 
   validatorStr(str) {
@@ -80,3 +89,12 @@ export class WeatherComponent implements OnInit {
   }
 }
 
+export class Page {
+  constructor(
+    public itemsPerPage: number,
+    public page: number
+  ) {
+    this.itemsPerPage = 3;
+    this.page = 1;
+  }
+}
