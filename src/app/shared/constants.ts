@@ -3,3 +3,4 @@ export const SESSION_STORAGE = {
 }
 export const DOMAIN = 'http://localhost:6234/api/services/app/';
 // export const DOMAIN = 'http://175.170.129.202:8088/api/services/app/';
+export const EXPORT_FILE_PATH = 'http://localhost:6234/ExportFiles/';

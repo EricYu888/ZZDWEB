@@ -19,7 +19,7 @@ export class WeatherComponent implements OnInit {
   loading = true;
   alertsDismiss: any = [];
   totalPages: number;
-  pageSize: number = 3;
+  pageSize: number = 20;
   @Input() pageNum: number;
   @Input() totalItems: number = 20;
   @Output() pageChanges: EventEmitter<Page> = new EventEmitter();
@@ -34,7 +34,7 @@ export class WeatherComponent implements OnInit {
 
   ngOnInit() {
     this.pageNum = 1;
-    this.pageSize = 3;
+    this.pageSize = 20;
 
     this.loadWeathers();
   }

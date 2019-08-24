@@ -38,13 +38,18 @@
         <div class="form-group row">
           <div class="col-md-2 col-form-label">类型:</div>
           <div class="col-md-10 form-control" style="border: 0;">
-            {{weather.type}}
+            <div *ngIf="weather.type==1">短期天气预报</div>
+            <div *ngIf="weather.type==2">旬天气预报</div>
+            <div *ngIf="weather.type==3">月天气预报</div>
+            <div *ngIf="weather.type==4">季天气预报</div>
+            <div *ngIf="weather.type==5">年天气预报</div>
+            <div *ngIf="weather.type==6">月气候评估</div>
           </div>
         </div>
         <div class="form-group row">
           <div class="col-md-2 col-form-label">发布时间:</div>
           <div class="col-md-10 form-control" style="border: 0;">
-            {{weather.publishTime}}
+            {{weather.publishTime | date:'yyyy-MM-dd HH:mm'}}
           </div>
         </div>
         <div class="form-group row">
@@ -55,13 +60,11 @@
         </div>
       </div>
 
-      <div class="form-actions" *ngIf="add" style="margin-top: 20px;">
-        <button type="submit" class="btn btn-primary pull-right" (click)="saveWeather()">保存</button>
+      <div class="form-actions"  style="margin-top: 20px;">
+        <button type="submit" class="btn btn-primary pull-right" (click)="saveWeather()" *ngIf="add">保存</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="submit" class="btn btn-primary pull-right" (click)="saveWeather()" *ngIf="modify">修改</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="submit" class="btn btn-secondary pull-right" (click)="clolseWeather()">关闭</button>&nbsp;&nbsp;&nbsp;&nbsp;
       </div>
-      <div class="form-actions" *ngIf="modify" style="margin-top: 20px;">
-        <button type="submit" class="btn btn-primary pull-right" (click)="saveWeather()">修改</button>
-      </div>
-      <button type="submit" class="btn btn-primary pull-right" (click)="clolseWeather()">关闭</button>
     </div>
   </div>
 </div>

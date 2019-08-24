@@ -51,7 +51,7 @@
                 <td colspan="3">没有相关数据</td>
               </tr>
               <tr *ngFor="let item of weatherList">
-                <td (click)="viewWeather(item)"><span>{{item.title}}</span></td>
+                <td ><span class="btn btn-block">{{item.title}}</span></td><!-- (click)="viewWeather(item)" -->
                 <td *ngIf="item.type == 1">短期天气预报</td>
                 <td *ngIf="item.type == 2">旬天气预报</td>
                 <td *ngIf="item.type == 3">月天气预报</td>
