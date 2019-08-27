@@ -114,7 +114,6 @@ export class NoticeOperationComponent implements OnInit {
         }
       }
       if (this.add) {
-
         let param = {
           Title: this.notice.title,
           NewsAuthor: this.notice.newsAuthor,
@@ -128,7 +127,6 @@ export class NoticeOperationComponent implements OnInit {
           NewsAuthor: this.notice.newsAuthor,
           NewsContent: this.notice.newsContent
         }
-
         this.service.UpdataNotice(param).then(callback);
       }
     }

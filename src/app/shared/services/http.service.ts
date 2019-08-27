@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
-import { DOMAIN}  from './../../shared/constants';
+import { DOMAIN } from './../../shared/constants';
 declare var require: any;
 // const DOMAIN = require('../config.json').DOMAIN;
 const headers = new HttpHeaders()
@@ -43,7 +43,7 @@ export class HttpService {
     }
     public post(url, body): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.http.post(`${DOMAIN}${url}`, body, { headers }).subscribe(data => {       
+            this.http.post(`${DOMAIN}${url}`, body, { headers }).subscribe(data => {
                 resolve(data);
             }), (err: HttpErrorResponse) => {
                 if (err.error instanceof Error) {
@@ -72,6 +72,7 @@ export class HttpService {
             });
         })
     }
+
     public uploadFile(url, file, doprocess?: (process: number, response: any) => void) {
         const req = new HttpRequest('POST', `${DOMAIN}${url}`, file, {
             reportProgress: true,
@@ -87,6 +88,11 @@ export class HttpService {
             }
         });
     }
+
+    public postWithForm(url: string, paramMap?: FormData): Promise<any> {
+        return this.http.request("post", DOMAIN + url, { body: paramMap, headers: { Accept: "application/json; charset=utf-8" }, withCredentials: true }).toPromise<any>();
+    }
+
     public delete(url, paramJson?): Promise<any> {
         return new Promise((resolve, reject) => {
             let perferences = { headers };
@@ -110,6 +116,43 @@ export class HttpService {
                 }
             });
         })
+    }
+
+
+    public upload(url: string, files): Promise<any> {
+        return new Promise((resolve, reject) => {
+            let formData: FormData = new FormData(),
+                xhr: XMLHttpRequest = new XMLHttpRequest();
+            console.log(files)
+            // for (let i = 0; i < files.length; i++) {
+            //     console.log(files[i])
+            //     console.log(files[i].name)
+            //     formData.append("uploads[]", files[i], files[i].name);
+            // }
+            console.log(files.target.files)
+            console.log(files.target.files[0].name)
+            formData.append('uploads', files.target.files, files.target.files[0].name);
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        resolve(JSON.parse(xhr.response));
+                    } else {
+                        reject(xhr.response);
+                    }
+                }
+            };
+
+            // FileUploadService.setUploadUpdateInterval(500);
+
+            // xhr.upload.onprogress = (event) => {
+            //     this.progress = Math.round(event.loaded / event.total * 100);
+
+            //     this.progressObserver.next(this.progress);
+            // };
+
+            xhr.open('POST', `${DOMAIN}${url}`, true);
+            xhr.send(formData);
+        });
     }
 
 }

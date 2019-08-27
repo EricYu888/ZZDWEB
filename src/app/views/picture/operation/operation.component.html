@@ -1,53 +1,61 @@
 <div class="animated fadeIn">
-  <div class="card">
-      <div class="card-body">
-          <div *ngIf="!detailView">
-            <app-validator-input #title [startValidator]="hasSubmit" [test]="validatorStr(picture.title)" [msg]="'请填写图片名称'" [readonly]="false"
-                [labelname]="'图片名称：'" [(ngModel)]="picture.title" [placeholder]="'请输入图片名称'" [inputType]="'text'" [showRequired]='true'>
-            </app-validator-input>
+    <div class="card">
+        <div class="card-body">
+            <div *ngIf="!detailView">
+                <app-validator-input #title [startValidator]="hasSubmit" [test]="validatorStr(picture.title)"
+                    [msg]="'请填写图片名称'" [readonly]="false" [labelname]="'图片名称：'" [(ngModel)]="picture.title"
+                    [placeholder]="'请输入图片名称'" [inputType]="'text'" [showRequired]='true'>
+                </app-validator-input>
 
-            <app-validator-input #displayIndex [startValidator]="hasSubmit" [test]="validatorNum(picture.displayIndex)" [msg]="'请填写显示序号'" [readonly]="false"
+                <!-- <app-validator-input #displayIndex [startValidator]="hasSubmit" [test]="validatorNum(picture.displayIndex)" [msg]="'请填写显示序号'" [readonly]="false"
                 [labelname]="'显示序号'" [(ngModel)]="picture.displayIndex" [placeholder]="'请输入显示序号'" [inputType]="'number'" [showRequired]='true'>
-            </app-validator-input>
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label"><span style="color: red;">*</span>图片上传</label>
-                <label class="switch switch-primary" style="margin-left: 16px;">
-                    <img *ngIf="validatorStr(picture.imgUrl)" src="{{picture.imgUrl}}" style="width:100px;height:100px;">
-                    <input *ngIf="!detailView" class="form-control" #newsFaceImage type=file accept="image/*" id="newsFaceImage" name="newsFaceImage" (change)="filechange($event)">
-                  </label>
+            </app-validator-input> -->
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label"><span style="color: red;">*</span>图片上传</label>
+                    <label class="switch switch-primary" style="margin-left: 16px;">
+                        <img *ngIf="validatorStr(picture.imgUrl)" src="{{picture.picureUrl}}"
+                            style="width:100px;height:100px;">
+                        <div style="height: 15px;"></div>
+                        <input *ngIf="!detailView" class="form-control" #newsFaceImage type=file accept="image/*"
+                            id="newsFaceImage" name="newsFaceImage" (change)="filechange($event)">
+                        <div class="invalid-feedback" [ngStyle]="{'display':passValidate?'inline-block':'none'}">
+                            请上传图片
+                        </div>
+                    </label>
+
+                </div>
             </div>
-          </div>
-          <div *ngIf="detailView">
-            <div class="form-group row">
-              <div class="col-md-2 col-form-label" >图片名称：</div>
-              <div class="col-md-10 form-control" style="border: 0;">
-                  {{picture.title}}
-              </div>
-            </div>
-            <div class="form-group row">
-                  <div class="col-md-2 col-form-label">显示序号:</div>
-                  <div class="col-md-10 form-control" style="border: 0;">
-                      {{picture.displayIndex}}
-                  </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label"><span style="color: red;">*</span>图片展示</label>
-                <label class="switch switch-primary" style="margin-left: 16px;">
-                    <img   src="{{picture.imgUrl}}" style="width:100px;height:100px;">
-                  </label>
+            <div *ngIf="detailView">
+                <div class="form-group row">
+                    <div class="col-md-2 col-form-label">图片名称：</div>
+                    <div class="col-md-10 form-control" style="border: 0;">
+                        {{picture.title}}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-2 col-form-label">显示序号:</div>
+                    <div class="col-md-10 form-control" style="border: 0;">
+                        {{picture.displayIndex}}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label"><span style="color: red;">*</span>图片展示</label>
+                    <label class="switch switch-primary" style="margin-left: 16px;">
+                        <img src="{{picture.imgUrl}}" style="width:100px;height:100px;">
+                    </label>
+                </div>
+
             </div>
 
-          </div>
-
-          <div class="form-actions" *ngIf="add" style="margin-top: 20px;">
-              <button type="submit" class="btn btn-primary pull-right"  (click)="savePic()">保存</button>
-          </div>
-          <div class="form-actions" *ngIf="modify" style="margin-top: 20px;">
-              <button type="submit" class="btn btn-primary pull-right" (click)="savePic()">修改</button>
-          </div>
-          <div class="form-actions" *ngIf="detailView" style="margin-top: 20px;">
-              <button type="submit" class="btn btn-primary pull-right" (click)="clolsePic()">关闭</button>
-          </div>
-      </div>
-  </div>
+            <div class="form-actions" *ngIf="add" style="margin-top: 20px;">
+                <button type="submit" class="btn btn-primary pull-right" (click)="savePic()">保存</button>
+            </div>
+            <div class="form-actions" *ngIf="modify" style="margin-top: 20px;">
+                <button type="submit" class="btn btn-primary pull-right" (click)="savePic()">修改</button>
+            </div>
+            <div class="form-actions" *ngIf="detailView" style="margin-top: 20px;">
+                <button type="submit" class="btn btn-primary pull-right" (click)="clolsePic()">关闭</button>
+            </div>
+        </div>
+    </div>
 </div>

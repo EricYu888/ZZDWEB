@@ -20,7 +20,7 @@
      * window.UEDITOR_HOME_URL = "/xxxx/xxxx/";
      */
     var URL = "../../../../../../../../../../../../";
-
+    console.log(URL)
     /**
      * 配置项主体。注意，此处所有涉及到路径的配置别遗漏URL变量。
      */
@@ -31,7 +31,7 @@
 
         // 服务器统一请求接口路径
         ,
-        serverUrl: URL + "schoolSite/upload/getEditorConfig",
+        serverUrl:"http://localhost:6234/api/services/app/cpicture/UploadImg",
 
         // imageUrl: URL + "schoolSite/upload/uploadFile",
         // imagePath: URL + ""
@@ -47,9 +47,9 @@
                     'directionalityltr', 'directionalityrtl', 'indent', '|',
                     'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
                     'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-                    'simpleupload', 'emotion', 'scrawl', 'attachment',         'pagebreak', 'template', 'background', '|',
-                    'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
-                    'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
+                    'simpleupload', 'pagebreak',    '|',
+                    'horizontal', 'date', 'time',   'wordimage', '|',
+                    'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols',   '|',
                 ]
             ]
             //当鼠标放在工具栏上时显示的tooltip提示,留空支持自动多语言配置，否则以配置值为准
