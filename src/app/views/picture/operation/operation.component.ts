@@ -66,7 +66,11 @@ export class PictureOperationComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.getDetail()
+  
+
+    if (this.id) {
+      this.getDetail();
+    }
   }
 
   savePic() {
