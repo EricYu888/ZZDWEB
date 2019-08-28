@@ -19,6 +19,7 @@ export class TideComponent implements OnInit {
   fromDate:Date; 
   toDate:Date; 
   file_base64:string;
+  alertsDismiss: any = [];
   @Input() pageNum: number = 1;
   @Input() totalItems: number = 20;
   @Output() pageChanges: EventEmitter<Page> = new EventEmitter();

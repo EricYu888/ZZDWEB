@@ -108,6 +108,13 @@ export class UsersComponent implements OnInit {
       cancelcallback: cancelCallback
     })
   }
+
+  pageChanged(event) {
+    console.log(event.page)
+    this.pageNum = event.page;
+    this.getAll();
+  }
+
   private addMsg(type, msg) {
     this.alertsDismiss = [];
     this.alertsDismiss.push({

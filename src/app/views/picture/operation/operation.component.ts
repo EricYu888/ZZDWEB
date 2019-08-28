@@ -189,11 +189,7 @@ export class PictureOperationComponent implements OnInit {
   validatorNum(str) {
     return this.util.validatorNum(str);
   }
-  pageChanged(event) {
-    console.log(event.page)
-    this.pageNum = event.page;
-    this.getAll();
-  }
+  
   addErrorMsg(msg) {
     this.alertsDismiss.push({
       type: 'danger',
