@@ -34,10 +34,6 @@ export class LoginComponent implements OnInit {
   }
 
   public judgeUser() {
-    
-    // sessionStorage.setItem('username', 'test user');
-    // this.router.navigate(['/user']);
-    // return;
     this.showloading();
     if (this.util.isEmptyStr(this.userName) || this.util.isEmptyStr(this.password)) {
       this.alertsDismiss.push({
@@ -50,10 +46,9 @@ export class LoginComponent implements OnInit {
     } else {
       this.loginDao.login({ userName: this.userName, password: this.password }).then(res => {
         if (res.result.isSuccess) {
-          sessionStorage.setItem('username', res.result.data[0].username)
-          console.log(res.result.data[0].username)
-          // console.log('werwer')
-          // sessionStorage.setItem('username','admin')
+          sessionStorage.setItem('username', res.result.data[0].userName);
+          sessionStorage.setItem('companyId', res.result.data[0].companyId);
+          sessionStorage.setItem('userType', res.result.data[0].userType);
           this.router.navigate(['/user']);
         } else {
           this.alertsDismiss.push({

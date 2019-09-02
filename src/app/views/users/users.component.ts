@@ -38,6 +38,7 @@ export class UsersComponent implements OnInit {
     const params = {
       searchContent: this.user,
       isActivated: this.isActivated,
+      companyId: sessionStorage.getItem('companyId'),
       pageNumber: this.pageNum,
       pageSize: this.pageSize
     }

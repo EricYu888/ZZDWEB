@@ -36,6 +36,7 @@ export class NoticeComponent implements OnInit {
   getAll() {
     const params = {
       title: this.title,
+      companyId: sessionStorage.getItem('companyId'),
       pageNumber: this.pageNum,
       pageSize: this.pageSize
     }
@@ -80,7 +81,6 @@ export class NoticeComponent implements OnInit {
     })
   }
   pageChanged(event) {
-    console.log(event.page)
     this.pageNum = event.page;
     this.getAll();
   }

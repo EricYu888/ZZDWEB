@@ -66,7 +66,7 @@ export class PictureOperationComponent implements OnInit {
 
   }
   ngOnInit() {
-  
+
 
     if (this.id) {
       this.getDetail();
@@ -102,7 +102,8 @@ export class PictureOperationComponent implements OnInit {
       if (this.add) {
         let param = {
           title: this.picture.title,
-          imgUrl: this.picture.imgUrl
+          imgUrl: this.picture.imgUrl,
+          companyId: sessionStorage.getItem('companyId')
         }
         this.service.Add(param).then(callback);
       } else if (this.modify) {
@@ -111,8 +112,6 @@ export class PictureOperationComponent implements OnInit {
           title: this.picture.title,
           imgUrl: this.picture.imgUrl
         }
-        console.log(param)
-
         this.service.Update(param).then(callback);
       }
     }
@@ -189,7 +188,7 @@ export class PictureOperationComponent implements OnInit {
   validatorNum(str) {
     return this.util.validatorNum(str);
   }
-  
+
   addErrorMsg(msg) {
     this.alertsDismiss.push({
       type: 'danger',

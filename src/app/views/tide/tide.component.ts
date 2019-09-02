@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AppAlertService } from '../../components';
 import { UtilService } from '../../shared/';
 import { AppLoadingService } from '../../components/app-loading';
-import { EXPORT_FILE_PATH}  from '../../shared/constants';
+import { EXPORT_FILE_PATH } from '../../shared/constants';
 
 @Component({
   selector: 'app-tide',
@@ -16,9 +16,9 @@ export class TideComponent implements OnInit {
   loading: boolean = false;
   tideList = [];
   pageSize: number = 3;
-  fromDate:Date; 
-  toDate:Date; 
-  file_base64:string;
+  fromDate: Date;
+  toDate: Date;
+  file_base64: string;
   alertsDismiss: any = [];
   @Input() pageNum: number = 1;
   @Input() totalItems: number = 20;
@@ -38,16 +38,16 @@ export class TideComponent implements OnInit {
   }
 
   loadTideInfo(event = null) {
-  this.loading = true;
-    this.service.getTides(this.fromDate, this.toDate, this.pageSize, this.pageNum).then(res => {
+    this.loading = true;
+    this.service.getTides(this.fromDate, this.toDate, parseInt(sessionStorage.getItem('companyId')), this.pageSize, this.pageNum).then(res => {
       this.loading = false;
       if (res.result.isSuccess) {
         this.tideList = res.result.data;
-        this.calculatePaging(res.result.total,event);
+        this.calculatePaging(res.result.total, event);
       }
     })
   }
-  calculatePaging(total,event = null) {
+  calculatePaging(total, event = null) {
     this.totalItems = total;
     this.pageChanges.emit(event);
   }
@@ -60,11 +60,11 @@ export class TideComponent implements OnInit {
         this.appAlertService.addAlert({ type: 'info', msg: '导入成功' });
       }
     },
-    error => {
-      this.appAlertService.addAlert({ type: 'danger', msg: '导入文件无法解析，请仔细填写并保证输入格式与到处文件一致。' });
-    })
+      error => {
+        this.appAlertService.addAlert({ type: 'danger', msg: '导入文件无法解析，请仔细填写并保证输入格式与到处文件一致。' });
+      })
   }
-  export(){
+  export() {
     this.service.exportTideInfo().then(res => {
       this.loading = false;
       if (res.result.isSuccess) {
@@ -75,18 +75,18 @@ export class TideComponent implements OnInit {
       }
     })
   }
-  selectedFileOnChanged(event){
+  selectedFileOnChanged(event) {
     let that = this;
     let file = event.target.files[0];
     let reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onloadend = function(){
-      let tmp = reader.result.toString();      
-      tmp = tmp.substring(tmp.indexOf(",")+1);
-      that.file_base64 = tmp;      
+    reader.onloadend = function () {
+      let tmp = reader.result.toString();
+      tmp = tmp.substring(tmp.indexOf(",") + 1);
+      that.file_base64 = tmp;
       console.log(that.file_base64);
     };
-    
+
   }
   pageChanged(event) {
     this.pageNum = event.page;

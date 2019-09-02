@@ -20,10 +20,11 @@ export class TidService {
     return this.service.post("tide/ExportTides",null);
   }
   
-  public getTides(from:Date, to:Date, pageSize:number, pageIndex:number): Promise<any> {
+  public getTides(from:Date, to:Date, companyId:number,pageSize:number, pageIndex:number): Promise<any> {
     let params = {
       "publicDateFrom": from,
       "publicDateTo": to,
+      "companyId":companyId,
       "pageNumber": pageIndex,
       "pageSize": pageSize
     };

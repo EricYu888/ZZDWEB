@@ -10,33 +10,35 @@ export class WeatherService {
 
   }
 
-  public getWeathers(title:string, type:number, pageSize:number, pageIndex:number): Promise<any> {
+  public getWeathers(title: string, type: number, companyId: number, pageSize: number, pageIndex: number): Promise<any> {
     let params = {
-      "title": (title.trim() == "")?null:title.trim(),
-      "type": (type == 0)?null:type,
+      "title": (title.trim() == "") ? null : title.trim(),
+      "type": (type == 0) ? null : type,
+      "companyId": companyId,
       "pageNumber": pageIndex,
       "pageSize": pageSize
     };
-    return this.service.post("weather/GetWeathers",params);
+    return this.service.post("weather/GetWeathers", params);
   }
 
-  public getWeatherDetail(id:number): Promise<any> {
+  public getWeatherDetail(id: number): Promise<any> {
     let url = "weather/GetWeather";
     let params = {
       "id": id
     };
-    return this.service.post(url,params);
+    return this.service.post(url, params);
   }
-  public AddWeather(type:number, title: string, content:string,): Promise<any> {
+  public AddWeather(type: number, title: string, content: string,companyId:number ): Promise<any> {
     let url = "weather/AddWeather";
     let params = {
       "title": title,
       "type": type,
-      "content": content
+      "content": content,
+      "companyId":companyId
     };
-    return this.service.post(url,params);
+    return this.service.post(url, params);
   }
-  public UpdateWeather(id:number,type:number, title: string, content:string,): Promise<any> {
+  public UpdateWeather(id: number, type: number, title: string, content: string, ): Promise<any> {
     let url = "weather/UpdateWeather";
     let params = {
       "id": id,
@@ -44,14 +46,14 @@ export class WeatherService {
       "type": type,
       "content": content
     };
-    return this.service.post(url,params);
+    return this.service.post(url, params);
   }
-  
-  public DeleteWeather(id:number): Promise<any> {
+
+  public DeleteWeather(id: number): Promise<any> {
     let url = "weather/DeleteWeather";
     let params = {
       "id": id
     };
-    return this.service.post(url,params);
+    return this.service.post(url, params);
   }
 }

@@ -87,6 +87,7 @@ export class NoticeOperationComponent implements OnInit {
   }
 
   saveNotice() {
+
     this.hasSubmit = true;
 
     //if (this.newsAuthor.test && this.displayIndex.test && this.imeiCode.test) {
@@ -117,7 +118,8 @@ export class NoticeOperationComponent implements OnInit {
         let param = {
           Title: this.notice.title,
           NewsAuthor: this.notice.newsAuthor,
-          NewsContent: this.notice.newsContent
+          NewsContent: this.notice.newsContent,
+          companyId: sessionStorage.getItem('companyId')
         }
         this.service.AddNotice(param).then(callback);
       } else if (this.modify) {

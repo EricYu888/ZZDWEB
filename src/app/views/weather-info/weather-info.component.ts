@@ -97,7 +97,7 @@ export class WeatherInfoComponent implements OnInit {
         } 
       }
       if (this.add) {console.log("add weather");
-        this.service.AddWeather(this.weather.type, this.weather.title,this.weather.content).then(callback);
+        this.service.AddWeather(this.weather.type, this.weather.title,this.weather.content,parseInt(sessionStorage.getItem('companyId'))).then(callback);
       } else if (this.modify) {console.log("modify weather");
         this.service.UpdateWeather(this.weather.id,this.weather.type, this.weather.title,this.weather.content).then(callback);
       }

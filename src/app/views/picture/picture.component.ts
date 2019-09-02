@@ -40,6 +40,7 @@ export class PictureComponent implements OnInit {
   getAll() {
     const params = {
       title: this.title,
+      companyId: sessionStorage.getItem('companyId'),
       pageNumber: this.pageNum,
       pageSize: this.pageSize
     }
@@ -63,8 +64,6 @@ export class PictureComponent implements OnInit {
     this.router.navigate(['/picture/operation'], { queryParams: { operate: 'modify', id: item.id } });
   }
   deletePic(item) {
-  
-
     this.currentPicItem = item.id;
     let okCallback = () => {
       let picId = this.currentPicItem;

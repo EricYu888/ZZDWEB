@@ -23,6 +23,7 @@ export class UserOperationComponent implements OnInit {
     accountName: '',
     userName: '',
     IMEICode: '',
+    companyId: 0,
     isActivatedFlag: true,
     isActivated: '1'
 
@@ -114,12 +115,11 @@ export class UserOperationComponent implements OnInit {
         }
       }
       if (this.add) {
-        // this.user.isActivatedFlag 
+        this.user.companyId = parseInt(sessionStorage.getItem('companyId'));
         this.user.isActivated = this.user.isActivatedFlag ? "1" : "0";
         this.service.AddUser(this.user).then(callback);
       } else if (this.modify) {
         this.user.isActivated = this.user.isActivatedFlag ? "1" : "0";
-        console.log(this.user)
         this.service.UpdataUser(this.user).then(callback);
       }
     }

@@ -41,7 +41,7 @@ export class WeatherComponent implements OnInit {
 
   loadWeathers(event = null) {
     this.loading = true;
-    this.service.getWeathers(this.title, this.type, this.pageSize, this.pageNum).then(res => {
+    this.service.getWeathers(this.title, this.type, parseInt(sessionStorage.getItem('companyId')), this.pageSize, this.pageNum).then(res => {
       this.loading = false;
       console.log("res:", res);
       if (res.result.isSuccess) {
