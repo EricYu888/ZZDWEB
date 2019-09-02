@@ -20,7 +20,7 @@ export class UserOperationComponent implements OnInit {
   modify = false;
   hasSubmit: boolean;
   user = {
-    accountName: '',
+    account: '',
     userName: '',
     IMEICode: '',
     companyId: 0,
@@ -32,7 +32,7 @@ export class UserOperationComponent implements OnInit {
   loading: any;
   activitelist = [];
   alertsDismiss: any = [];
-  @ViewChild('accountName') accountName;
+  @ViewChild('account') account;
   @ViewChild('userName') userName;
   @ViewChild('IMEICode') imeiCode;
 
@@ -80,7 +80,7 @@ export class UserOperationComponent implements OnInit {
     this.service.getUserDetail(param).then(res => {
       this.loading = false;
       if (res.result.isSuccess) {
-        this.user.accountName = res.result.data.accountName;
+        this.user.account = res.result.data.account;
         this.user.userName = res.result.data.userName;
         this.user.IMEICode = res.result.data.imeiCode;
         this.user.isActivatedFlag = res.result.data.isActivated === '1' ? true : false;
@@ -92,7 +92,7 @@ export class UserOperationComponent implements OnInit {
 
   saveUser() {
     this.hasSubmit = true;
-    if (this.accountName.test && this.userName.test && this.imeiCode.test) {
+    if (this.account.test && this.userName.test && this.imeiCode.test) {
       this.appLoadingService.showLoading();
       let callback = (res) => {
         this.appLoadingService.hideLoading();

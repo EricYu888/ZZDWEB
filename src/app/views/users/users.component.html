@@ -47,10 +47,10 @@
                                 <td colspan="5">正在载入数据...</td>
                             </tr>
                             <tr *ngFor="let item of userList">
-                                <td>{{item.accountName}}</td>
                                 <td>{{item.userName}}</td>
+                                <td>{{item.account}}</td>
                                 <td>{{item.imeiCode}}</td>
-                                <td>{{item.isActivated==='1'?'启用':'停用'}}</td>
+                                <td>{{item.isActivated==='1'?'启用':'禁用'}}</td>
                                 <td style="text-align:center;">
                                     <div class="form-actions">
                                         <button type="button" class="btn btn-info operateButton"

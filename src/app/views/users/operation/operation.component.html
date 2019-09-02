@@ -1,11 +1,11 @@
 <div class="animated fadeIn">
   <div class="card">
-      <div class="card-body">
-          <app-validator-input #accountName [startValidator]="hasSubmit" [test]="validatorStr(user.accountName)" [msg]="'请填写用户姓名'" [readonly]="false"
-              [labelname]="'用户姓名：'" [(ngModel)]="user.accountName" [placeholder]="'请输入用户姓名'" [inputType]="'text'" [showRequired]='true'></app-validator-input>
+      <div class="card-body"> 
+          <app-validator-input #userName [startValidator]="hasSubmit" [test]="validatorStr(user.userName)" [msg]="'请填写用户姓名'" [readonly]="false"
+              [labelname]="'用户姓名：'" [(ngModel)]="user.userName" [placeholder]="'请输入用户姓名'" [inputType]="'text'" [showRequired]='true'></app-validator-input>
 
-              <app-validator-input #userName [startValidator]="hasSubmit" [test]="validatorPhone(user.userName)" [msg]="'请填写手机号码'" [readonly]="false"
-              [labelname]="'手机号码'" [(ngModel)]="user.userName" [placeholder]="'请输入手机号码'" [inputType]="'text'" [showRequired]='true'></app-validator-input>
+              <app-validator-input #account [startValidator]="hasSubmit" [test]="validatorPhone(user.account)" [msg]="'请填写手机号码'" [readonly]="false"
+              [labelname]="'手机号码'" [(ngModel)]="user.account" [placeholder]="'请输入手机号码'" [inputType]="'text'" [showRequired]='true'></app-validator-input>
 
               <app-validator-input #IMEICode [startValidator]="hasSubmit" [test]="validatorCode(user.IMEICode)" [msg]="'请填写15位IMEI数字号码'" [readonly]="false"
               [labelname]="'IMEI号码'" [(ngModel)]="user.IMEICode" [placeholder]="'请输入IMEI号码'" [inputType]="'text'" [showRequired]='true'></app-validator-input>
