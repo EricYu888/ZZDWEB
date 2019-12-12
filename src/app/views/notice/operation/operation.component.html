@@ -1,61 +1,61 @@
 <div class="animated fadeIn">
     <div class="card">
-        <div class="card-body">
+        <div class="card-body" style="height: 700px;  max-height:700px;">
             <div *ngIf="!detailView">
-            <app-validator-input #title [startValidator]="hasSubmit" [test]="validatorStr(notice.title)" [msg]="'请填写通知标题'" [readonly]="false"
-                [labelname]="'通知标题：'" [(ngModel)]="notice.title" [placeholder]="'请输入通知标题'" [inputType]="'text'" [showRequired]='true'>
-            </app-validator-input>
-            <app-validator-input #newsAuthor [startValidator]="hasSubmit" [test]="validatorStr(notice.newsAuthor)" [msg]="'请填写发布人'" [readonly]="false"
-                [labelname]="'发布人'" [(ngModel)]="notice.newsAuthor" [placeholder]="'请输入发布人'" [inputType]="'text'" [showRequired]='true'>
-            </app-validator-input>
-            <!-- <app-validator-input #displayIndex [startValidator]="hasSubmit" [test]="validatorNum(notice.displayIndex)" [msg]="'请填写显示序号'" [readonly]="false"
+                <app-validator-input #title [startValidator]="hasSubmit" [test]="validatorStr(notice.title)"
+                    [msg]="'请填写通知标题'" [readonly]="false" [labelname]="'通知标题：'" [(ngModel)]="notice.title"
+                    [placeholder]="'请输入通知标题'" [inputType]="'text'" [showRequired]='true'>
+                </app-validator-input>
+                <app-validator-input #newsAuthor [startValidator]="hasSubmit" [test]="validatorStr(notice.newsAuthor)"
+                    [msg]="'请填写发布人'" [readonly]="false" [labelname]="'发布人'" [(ngModel)]="notice.newsAuthor"
+                    [placeholder]="'请输入发布人'" [inputType]="'text'" [showRequired]='true'>
+                </app-validator-input>
+                <!-- <app-validator-input #displayIndex [startValidator]="hasSubmit" [test]="validatorNum(notice.displayIndex)" [msg]="'请填写显示序号'" [readonly]="false"
                 [labelname]="'显示序号'" [(ngModel)]="notice.displayIndex" [placeholder]="'请输入显示序号'" [inputType]="'number'" [showRequired]='true'>
             </app-validator-input> -->
-            <div class="form-group row">
-                <div class="col-md-2 col-form-label" >内容：</div>
-                <div class="col-md-10 form-control" style="border: 0; height: auto">
-                    <ueditor #pageContentEl
-                    name="newsContent"
-                    [(ngModel)]="notice.newsContent">
-                 </ueditor>
+                <div class="form-group row">
+                    <div class="col-md-2 col-form-label">内容：</div>
+                    <div class="col-md-10 form-control" style="border: 0; height: auto">
+                        <ueditor #pageContentEl name="newsContent" [(ngModel)]="notice.newsContent">
+                        </ueditor>
+                    </div>
                 </div>
-            </div>
             </div>
             <div *ngIf="detailView">
-              <div class="form-group row">
-                <div class="col-md-2 col-form-label" >通知标题：</div>
-                <div class="col-md-10 form-control" style="border: 0;">
-                    {{notice.title}}
+                <div class="form-group row">
+                    <div class="col-md-2 col-form-label">通知标题：</div>
+                    <div class="col-md-10 form-control" style="border: 0;">
+                        {{notice.title}}
+                    </div>
                 </div>
-              </div>
-              <div   class="form-group row">
-                  <div class="col-md-2 col-form-label">发布人:</div>
-                  <div class="col-md-10 form-control" style="border: 0;">
-                      {{notice.newsAuthor}}
-                  </div>
+                <div class="form-group row">
+                    <div class="col-md-2 col-form-label">发布人:</div>
+                    <div class="col-md-10 form-control" style="border: 0;">
+                        {{notice.newsAuthor}}
+                    </div>
                 </div>
-              <div   class="form-group row">
+                <div class="form-group row">
                     <div class="col-md-2 col-form-label">显示序号:</div>
                     <div class="col-md-10 form-control" style="border: 0;">
                         {{notice.displayIndex}}
                     </div>
-              </div>
-              <div   class="form-group row">
-                      <div class="col-md-2 col-form-label">发布时间:</div>
-                      <div class="col-md-10 form-control" style="border: 0;">
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-2 col-form-label">发布时间:</div>
+                    <div class="col-md-10 form-control" style="border: 0;">
                         {{notice.publishTime}}
-                      </div>
-              </div>
-              <div class="form-group row">
-                        <div class="col-md-2 col-form-label">内容 :</div>
-                        <div class="col-md-10 form-control" style="border: 0;">
-                            <div [innerHtml]="notice.newsContent"></div>
-                        </div>
-              </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-2 col-form-label">内容 :</div>
+                    <div class="col-md-10 form-control" style="border: 0;height: 300px;">
+                        <div [innerHtml]="notice.newsContent" style="height: 300px;"></div>
+                    </div>
+                </div>
             </div>
 
             <div class="form-actions" *ngIf="add" style="margin-top: 20px;">
-                <button type="submit" class="btn btn-primary pull-right"  (click)="saveNotice()">保存</button>
+                <button type="submit" class="btn btn-primary pull-right" (click)="saveNotice()">保存</button>
             </div>
             <div class="form-actions" *ngIf="modify" style="margin-top: 20px;">
                 <button type="submit" class="btn btn-primary pull-right" (click)="saveNotice()">修改</button>
@@ -65,4 +65,4 @@
             </div>
         </div>
     </div>
-  </div>
+</div>

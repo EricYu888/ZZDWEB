@@ -40,6 +40,7 @@ export class WeatherComponent implements OnInit {
   }
 
   loadWeathers(event = null) {
+    this.weatherList=[]
     this.loading = true;
     this.service.getWeathers(this.title, this.type, parseInt(sessionStorage.getItem('companyId')), this.pageSize, this.pageNum).then(res => {
       this.loading = false;

@@ -22,7 +22,7 @@ export class UserOperationComponent implements OnInit {
   user = {
     account: '',
     userName: '',
-    IMEICode: '',
+    IMEICode: '147852963789456',
     companyId: 0,
     isActivatedFlag: true,
     isActivated: '1'

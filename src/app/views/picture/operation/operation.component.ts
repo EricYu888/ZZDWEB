@@ -105,6 +105,7 @@ export class PictureOperationComponent implements OnInit {
           imgUrl: this.picture.imgUrl,
           companyId: sessionStorage.getItem('companyId')
         }
+        console.log(param)
         this.service.Add(param).then(callback);
       } else if (this.modify) {
         let param = {

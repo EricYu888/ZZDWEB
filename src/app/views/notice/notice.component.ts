@@ -34,6 +34,7 @@ export class NoticeComponent implements OnInit {
   }
 
   getAll() {
+    this.noticeList=[];
     const params = {
       title: this.title,
       companyId: sessionStorage.getItem('companyId'),

@@ -38,6 +38,7 @@ export class PictureComponent implements OnInit {
     this.getAll();
   }
   getAll() {
+    this.pictureList=[];
     const params = {
       title: this.title,
       companyId: sessionStorage.getItem('companyId'),

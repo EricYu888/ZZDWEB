@@ -38,12 +38,12 @@
                           <tr *ngFor="let item of pictureList">
                             <td>{{item.title}}</td>
                             <td>
-                              <img *ngIf="validatorStr(item.imgUrl)" src="{{item.imgUrl}}" style="width:50px;height:50px;">
+                              <img *ngIf="validatorStr(item.imgUrl)" src="{{item.imgUrl}}" style="width:120px;height:80px;">
                             </td>
                             <td style="text-align:center;">
                               <div class="form-actions">
-                                  <button type="button" class="btn btn-info" (click)="jumpToModify(item)">修改</button> &nbsp;
-                                  <button type="button" class="btn btn-danger" (click)="deletePic(item)">删除</button>
+                                  <button type="button" class="btn btn-info operateButton" (click)="jumpToModify(item)">修改</button> &nbsp;
+                                  <button type="button" class="btn btn-danger operateButton" (click)="deletePic(item)">删除</button>
                               </div>
                           </td>
                         </tr>

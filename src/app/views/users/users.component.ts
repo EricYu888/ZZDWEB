@@ -35,6 +35,7 @@ export class UsersComponent implements OnInit {
   }
 
   getAll() {
+    this.userList=[];
     const params = {
       searchContent: this.user,
       isActivated: this.isActivated,
@@ -111,7 +112,6 @@ export class UsersComponent implements OnInit {
   }
 
   pageChanged(event) {
-    console.log(event.page)
     this.pageNum = event.page;
     this.getAll();
   }

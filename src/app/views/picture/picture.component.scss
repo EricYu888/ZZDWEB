@@ -1,37 +1,34 @@
-input {
+input{
   border: 1px solid #e4e7ea;
   border-radius: .25rem;
   width: 200px;
 }
-
-select {
+select{
+  border: 1px solid #e4e7ea;
+  border-radius: .25rem;
+}
+.serarchbutton{
   border: 1px solid #e4e7ea;
   border-radius: .25rem;
 }
 
-.serarchbutton {
-  border: 1px solid #e4e7ea;
-  border-radius: .25rem;
-}
-
-.newButton {
-  float: right;
+.newButton{
+  float:right;
   border: 1px solid #e4e7ea;
   border-radius: .25rem;
   width: 80px;
 }
-
-
-.table {
+ 
+.operateButton{
   border: 1px solid #e4e7ea;
   border-radius: .25rem;
 }
 
+.table{
+  border: 1px solid #e4e7ea;
+  border-radius: .25rem;
+}
 .table .thead-light th {
   border: 1px solid #e4e7ea;
 
-}
-
-.table td{
-  vertical-align: middle;
 }

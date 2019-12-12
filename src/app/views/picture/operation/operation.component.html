@@ -4,7 +4,7 @@
             <div *ngIf="!detailView">
                 <app-validator-input #title [startValidator]="hasSubmit" [test]="validatorStr(picture.title)"
                     [msg]="'请填写图片名称'" [readonly]="false" [labelname]="'图片名称：'" [(ngModel)]="picture.title"
-                    [placeholder]="'请输入图片名称'" [inputType]="'text'" [showRequired]='true'>
+                    [placeholder]="'请输入图片名称'" [inputType]="'text'" [showRequired]='true' [maxlength]="'4'">
                 </app-validator-input>
 
                 <!-- <app-validator-input #displayIndex [startValidator]="hasSubmit" [test]="validatorNum(picture.displayIndex)" [msg]="'请填写显示序号'" [readonly]="false"
@@ -16,7 +16,7 @@
                         <img *ngIf="validatorStr(picture.imgUrl)" src="{{picture.picureUrl}}"
                             style="width:100px;height:100px;">
                         <div style="height: 15px;"></div>
-                        <input *ngIf="!detailView" class="form-control" #newsFaceImage type=file accept="image/*"
+                        <input *ngIf="!detailView" class="form-control" style="border:0px !important" #newsFaceImage type=file accept="image/*"
                             id="newsFaceImage" name="newsFaceImage" (change)="filechange($event)">
                         <div class="invalid-feedback" [ngStyle]="{'display':passValidate?'inline-block':'none'}">
                             请上传图片

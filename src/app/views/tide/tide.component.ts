@@ -38,6 +38,7 @@ export class TideComponent implements OnInit {
   }
 
   loadTideInfo(event = null) {
+    this.tideList=[]
     this.loading = true;
     this.service.getTides(this.fromDate, this.toDate, parseInt(sessionStorage.getItem('companyId')), this.pageSize, this.pageNum).then(res => {
       this.loading = false;
