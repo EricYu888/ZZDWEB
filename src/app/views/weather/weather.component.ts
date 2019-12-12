@@ -34,7 +34,7 @@ export class WeatherComponent implements OnInit {
 
   ngOnInit() {
     this.pageNum = 1;
-    this.pageSize = 20;
+    this.pageSize = 10;
 
     this.loadWeathers();
   }

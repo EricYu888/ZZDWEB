@@ -16,7 +16,7 @@ export class UsersComponent implements OnInit {
   isActivated = '';
   totalItems: number;
   pageNum: number;
-  pageSize: number;
+  pageSize: number = 10;
   currentItem;
 
   constructor(public userService: UsersService,
@@ -25,7 +25,6 @@ export class UsersComponent implements OnInit {
     public appModelService: AppModalService
   ) {
     if (!this.pageNum) {
-      confirm
       this.pageNum = 1;
     }
   }
@@ -35,7 +34,7 @@ export class UsersComponent implements OnInit {
   }
 
   getAll() {
-    this.userList=[];
+    this.userList = [];
     const params = {
       searchContent: this.user,
       isActivated: this.isActivated,
