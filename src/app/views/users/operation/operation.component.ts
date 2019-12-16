@@ -22,8 +22,9 @@ export class UserOperationComponent implements OnInit {
   user = {
     account: '',
     userName: '',
-    IMEICode: '147852963789456',
+    IMEICode: '',
     companyId: 0,
+    password: "",
     isActivatedFlag: true,
     isActivated: '1'
 
@@ -85,6 +86,7 @@ export class UserOperationComponent implements OnInit {
         this.user.IMEICode = res.result.data.imeiCode;
         this.user.isActivatedFlag = res.result.data.isActivated === '1' ? true : false;
         this.user.isActivated = res.result.data.isActivated;
+        this.user.password = res.result.data.password;
         // console.log(res.result.data.isActivated)
       }
     })
@@ -131,5 +133,8 @@ export class UserOperationComponent implements OnInit {
     else {
       this.user.isActivated = '0';
     }
+  }
+  clolse() {
+    this.router.navigate(['/user']);
   }
 }

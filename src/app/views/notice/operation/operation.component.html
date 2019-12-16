@@ -4,18 +4,18 @@
             <div *ngIf="!detailView">
                 <app-validator-input #title [startValidator]="hasSubmit" [test]="validatorStr(notice.title)"
                     [msg]="'请填写通知标题'" [readonly]="false" [labelname]="'通知标题：'" [(ngModel)]="notice.title"
-                    [placeholder]="'请输入通知标题'" [inputType]="'text'" [showRequired]='true'>
+                    [placeholder]="'请输入通知标题'" [inputType]="'text'" [showRequired]='true' [maxlengthNum]="20">
                 </app-validator-input>
                 <app-validator-input #newsAuthor [startValidator]="hasSubmit" [test]="validatorStr(notice.newsAuthor)"
-                    [msg]="'请填写发布人'" [readonly]="false" [labelname]="'发布人'" [(ngModel)]="notice.newsAuthor"
-                    [placeholder]="'请输入发布人'" [inputType]="'text'" [showRequired]='true'>
+                    [maxlengthNum]="10" [msg]="'请填写发布人'" [readonly]="false" [labelname]="'发布人'"
+                    [(ngModel)]="notice.newsAuthor" [placeholder]="'请输入发布人'" [inputType]="'text'" [showRequired]='true'>
                 </app-validator-input>
                 <!-- <app-validator-input #displayIndex [startValidator]="hasSubmit" [test]="validatorNum(notice.displayIndex)" [msg]="'请填写显示序号'" [readonly]="false"
                 [labelname]="'显示序号'" [(ngModel)]="notice.displayIndex" [placeholder]="'请输入显示序号'" [inputType]="'number'" [showRequired]='true'>
             </app-validator-input> -->
                 <div class="form-group row">
                     <div class="col-md-2 col-form-label">内容：</div>
-                    <div class="col-md-10 form-control" style="border: 0; height: auto">
+                    <div class="col-md-10 form-control" style="border: 0; height:300px;overflow-y: scroll;">
                         <ueditor #pageContentEl name="newsContent" [(ngModel)]="notice.newsContent">
                         </ueditor>
                     </div>
@@ -60,9 +60,8 @@
             <div class="form-actions" *ngIf="modify" style="margin-top: 20px;">
                 <button type="submit" class="btn btn-primary pull-right" (click)="saveNotice()">修改</button>
             </div>
-            <div class="form-actions" *ngIf="detailView" style="margin-top: 20px;">
-                <button type="submit" class="btn btn-primary pull-right" (click)="clolseNotice()">关闭</button>
-            </div>
+            <button type="submit" class="btn btn-primary pull-right" (click)="clolse()">关闭</button>
+
         </div>
     </div>
 </div>

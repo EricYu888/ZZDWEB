@@ -34,22 +34,22 @@
                             <tr style=" border: 1px solid #e4e7ea;">
                                 <th>用户姓名</th>
                                 <th>手机号</th>
-                                <!-- <th>手机IMEI码</th> -->
+                                <th>手机IMEI码</th>
                                 <th>用户状态</th>
                                 <th>操作</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngIf="!loading && userList.length==0">
-                                <td colspan="4">没有相关数据</td>
+                                <td colspan="5">没有相关数据</td>
                             </tr>
                             <tr *ngIf="loading">
-                                <td colspan="4">正在载入数据...</td>
+                                <td colspan="5">正在载入数据...</td>
                             </tr>
                             <tr *ngFor="let item of userList">
                                 <td>{{item.userName}}</td>
                                 <td>{{item.account}}</td>
-                                <!-- <td>{{item.imeiCode}}</td> -->
+                                <td>{{item.imeiCode}}</td>
                                 <td>{{item.isActivated==='1'?'启用':'禁用'}}</td>
                                 <td style="text-align:center;">
                                     <div class="form-actions">

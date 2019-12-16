@@ -103,7 +103,8 @@ export class PictureOperationComponent implements OnInit {
         let param = {
           title: this.picture.title,
           imgUrl: this.picture.imgUrl,
-          companyId: sessionStorage.getItem('companyId')
+          companyId: sessionStorage.getItem('companyId'),
+          displayIndex: this.picture.displayIndex
         }
         console.log(param)
         this.service.Add(param).then(callback);
@@ -111,7 +112,8 @@ export class PictureOperationComponent implements OnInit {
         let param = {
           id: this.id,
           title: this.picture.title,
-          imgUrl: this.picture.imgUrl
+          imgUrl: this.picture.imgUrl,
+          displayIndex: this.picture.displayIndex
         }
         this.service.Update(param).then(callback);
       }
@@ -140,7 +142,8 @@ export class PictureOperationComponent implements OnInit {
       if (res.result.isSuccess === true) {
         this.picture.title = res.result.data.title;
         this.picture.imgUrl = res.result.data.imgUrl;
-        this.picture.picureUrl = PIC_FILE_PATH + res.result.data.imgUrl;
+        this.picture.picureUrl = res.result.data.imgUrl;
+        this.picture.displayIndex = res.result.data.displayIndex;
       }
     })
   }
@@ -172,7 +175,7 @@ export class PictureOperationComponent implements OnInit {
       }).then(res => {
         if (res.result.isSuccess) {
           that.passValidate = false;
-          that.picture.imgUrl = res.result.data;
+          that.picture.imgUrl = PIC_FILE_PATH + res.result.data;
           that.picture.picureUrl = PIC_FILE_PATH + res.result.data;
         }
       })
@@ -196,5 +199,8 @@ export class PictureOperationComponent implements OnInit {
       msg: `${msg}`,
       timeout: 5000
     });
+  }
+  clolse() {
+    this.router.navigate(['/picture']);
   }
 }

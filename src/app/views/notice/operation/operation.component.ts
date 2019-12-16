@@ -157,4 +157,8 @@ export class NoticeOperationComponent implements OnInit {
       timeout: 3000
     });
   }
+
+  clolse() {
+    this.router.navigate(['/notice']);
+  }
 }

@@ -38,7 +38,7 @@ export class PictureComponent implements OnInit {
     this.getAll();
   }
   getAll() {
-    this.pictureList=[];
+    this.pictureList = [];
     const params = {
       title: this.title,
       companyId: sessionStorage.getItem('companyId'),
@@ -51,7 +51,7 @@ export class PictureComponent implements OnInit {
       if (res.result.isSuccess) {
         this.pictureList = res.result.data;
         this.pictureList.forEach(res => {
-          res.imgUrl = PIC_FILE_PATH + res.imgUrl
+          res.imgUrl = res.imgUrl
         })
         this.totalItems = res.result.total;
       }

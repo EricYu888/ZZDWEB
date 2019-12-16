@@ -3,16 +3,24 @@
         <div class="card-body">
             <app-validator-input #userName [startValidator]="hasSubmit" [test]="validatorStr(user.userName)"
                 [msg]="'请填写用户姓名'" [readonly]="false" [labelname]="'用户姓名：'" [(ngModel)]="user.userName"
-                [placeholder]="'请输入用户姓名'" [inputType]="'text'" [showRequired]='true'></app-validator-input>
+                [placeholder]="'请输入用户姓名'" [inputType]="'text'" [showRequired]='true' [maxlengthNum]="20">
+            </app-validator-input>
 
             <app-validator-input #account [startValidator]="hasSubmit" [test]="validatorPhone(user.account)"
-                [msg]="'请填写手机号码'" [readonly]="false" [labelname]="'手机号码'" [(ngModel)]="user.account"
-                [placeholder]="'请输入手机号码'" [inputType]="'text'" [showRequired]='true'></app-validator-input>
-            <div style="display: none;">
-                <app-validator-input #IMEICode [startValidator]="hasSubmit" [test]="validatorCode(user.IMEICode)"
-                    [msg]="'请填写15位IMEI数字号码'" [readonly]="false" [labelname]="'IMEI号码'" [(ngModel)]="user.IMEICode"
-                    [placeholder]="'请输入IMEI号码'" [inputType]="'text'" [showRequired]='true'></app-validator-input>
-            </div>
+                [msg]="'请输入11位手机号码'" [readonly]="false" [labelname]="'手机号码'" [(ngModel)]="user.account"
+                [placeholder]="'请输入11位手机号码'" [inputType]="'text'" [showRequired]='true' [maxlengthNum]="12">
+            </app-validator-input>
+            <div style="display: none;"> </div>
+            <app-validator-input #IMEICode [startValidator]="hasSubmit" [test]="validatorCode(user.IMEICode)"
+                [msg]="'请填写15位IMEI数字号码'" [readonly]="false" [labelname]="'IMEI号码'" [(ngModel)]="user.IMEICode"
+                [placeholder]="'请输入IMEI号码'" [inputType]="'text'" [showRequired]='true' [maxlengthNum]="15">
+            </app-validator-input>
+
+            <app-validator-input #usePassword [startValidator]="hasSubmit"   [test]="validatorStr(user.password)"
+                [msg]="'请填写登录密码'" [readonly]="false" [labelname]="'密码'" [(ngModel)]="user.password"
+                [placeholder]="'请填写登录密码'" [inputType]="'text'" [showRequired]='true' [maxlengthNum]="20">
+            </app-validator-input>
+
             <div class="form-group row">
                 <label class="col-md-2 col-form-label"><span style="color: red;">*</span>激活</label>
                 <label class="switch switch-primary" style="margin-left: 16px;">
@@ -27,6 +35,7 @@
             <div class="form-actions" *ngIf="modify">
                 <button type="submit" class="btn btn-primary pull-right" (click)="saveUser()">修改</button>
             </div>
+            <button type="submit" class="btn btn-secondary pull-right" (click)="clolse()">关闭</button>&nbsp;&nbsp;&nbsp;&nbsp;
         </div>
     </div>
 </div>

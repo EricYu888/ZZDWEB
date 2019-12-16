@@ -27,12 +27,12 @@ export const navigation = [
   role: 'admin'
 },
 
-{
-  name: '潮汐时刻管理',
-  url: '/tide',
-  icon: 'icon-anchor',
-  role: 'admin'
-},
+// {
+//   name: '潮汐时刻管理',
+//   url: '/tide',
+//   icon: 'icon-anchor',
+//   role: 'admin'
+// },
 {
   name: '天气预报管理',
   url: '/weather',
