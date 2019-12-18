@@ -16,6 +16,7 @@ export class AppAlertComponent {
 
   constructor(private appAlertService: AppAlertService) {
     this.subscription = appAlertService.Status$.subscribe(message => {
+     console.log(11111111)
       this.alertsDismiss.push({
         type: message.type,
         msg: `${message.msg}`,

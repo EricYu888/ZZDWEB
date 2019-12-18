@@ -98,6 +98,8 @@ export class UserOperationComponent implements OnInit {
       this.appLoadingService.showLoading();
       let callback = (res) => {
         this.appLoadingService.hideLoading();
+
+        console.log(res.result.errorMessage)
         if (res.result.isSuccess) {
           let resultMsg = '';
           if (this.add) {
@@ -111,9 +113,14 @@ export class UserOperationComponent implements OnInit {
         } else if (res.code === 'EXPIRE') {
           this.router.navigate(['/logout'], { replaceUrl: true });
         } else {
-          if (res.msg === '用户已存在') {
-            this.appAlertService.addAlert({ type: 'info', msg: '用户已存在!' });
-          }
+
+          // if (res.result.errorMessage === '用户已存在') {
+          //   this.appAlertService.addAlert({ type: 'info', msg: '用户已存在!' });
+          // }
+          // if (res.result.errorMessage === "电话号码已存在！") {
+          //   this.appAlertService.addAlert({ type: 'info', msg: '电话号码已存在!' });
+          // }
+          this.addErrorMsg("电话号码已存在!");
         }
       }
       if (this.add) {
@@ -137,4 +144,15 @@ export class UserOperationComponent implements OnInit {
   clolse() {
     this.router.navigate(['/user']);
   }
+
+
+  private addErrorMsg(msg) {
+    this.alertsDismiss.push({
+      type: 'danger',
+      msg: `${msg}`,
+      timeout: 5000
+    });
+  }
 }
+
+
