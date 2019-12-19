@@ -21,8 +21,8 @@ import { UEditorModule } from 'ngx-ueditor'
     AppValidatorModule,
     UEditorModule.forRoot({
       js: [
-        `../../../assets/ueditor/ueditor.config.js`,
-        `../../../assets/ueditor/ueditor.all.js`,
+        `../../../assets/ueditor/umeditor.config.js`,
+        `../../../assets/ueditor/umeditor.min.js`,
       ],
       // 默认前端配置项
       options: {

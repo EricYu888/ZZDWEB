@@ -21,6 +21,7 @@ import { UEditorModule } from 'ngx-ueditor'
     TabsModule,
     UEditorModule.forRoot({
       js: [
+        //`../../../assets/ueditor/third-party/jquery.min.js`,
         `../../../assets/ueditor/ueditor.config.js`,
         `../../../assets/ueditor/ueditor.all.js`,
       ],

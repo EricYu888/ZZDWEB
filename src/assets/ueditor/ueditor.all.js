@@ -17473,7 +17473,7 @@ UE.plugins['autoheight'] = function () {
             if(lastScrollY === null){
                 lastScrollY = this.scrollY
             }else if(this.scrollY == 0 && lastScrollY != 0){
-                me.window.scrollTo(0,0);
+                // me.window.scrollTo(0,0);
                 lastScrollY = null;
             }
         }
@@ -24463,7 +24463,6 @@ UE.plugin.register('simpleupload', function (){
     var me = this,
         isLoaded = false,
         containerBtn;
-
     function initUploadBtn(){
         var w = containerBtn.offsetWidth || 20,
             h = containerBtn.offsetHeight || 20,
@@ -24517,6 +24516,9 @@ UE.plugin.register('simpleupload', function (){
 
                 function callback(){
                     try{
+                        console.log("Body:");
+                        console.log(iframe.contentDocument);
+                        console.log(iframe.contentWindow);
                         var link, json, loader,
                             body = (iframe.contentDocument || iframe.contentWindow.document).body,
                             result = body.innerText || body.textContent || '';
@@ -24529,11 +24531,12 @@ UE.plugin.register('simpleupload', function (){
                             loader.setAttribute('title', json.title || '');
                             loader.setAttribute('alt', json.original || '');
                             loader.removeAttribute('id');
-                            domUtils.removeClasses(loader, 'loadingclass');
+                            domUtils.removeClasses(loader, 'loadingclass');                            
                         } else {
                             showErrorLoader && showErrorLoader(json.state);
                         }
                     }catch(er){
+                        console.log(er);
                         showErrorLoader && showErrorLoader(me.getLang('simpleupload.loadError'));
                     }
                     form.reset();
