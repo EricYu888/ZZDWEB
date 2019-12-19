@@ -4,7 +4,7 @@
       <div *ngIf="!detailView">
         <app-validator-input #title [startValidator]="hasSubmit" [test]="validatorStr(weather.title)"
           [msg]="'请填写天气预报标题'" [readonly]="false" [labelname]="'标题：'" [(ngModel)]="weather.title"
-          [placeholder]="'请输入天气预报标题'" [inputType]="'text'" [showRequired]='true'  [maxlengthNum]="20">
+          [placeholder]="'请输入天气预报标题'" [inputType]="'text'" [showRequired]='true' >
         </app-validator-input>
 
         <div class="form-group row">
@@ -22,7 +22,7 @@
         </div>
         <div class="form-group row">
           <div class="col-md-2 col-form-label">内容：</div>
-          <div class="col-md-10 form-control" style="border: 0; height:300px;overflow-y: scroll;">
+          <div class="col-md-10 form-control" style="border: 0; overflow-y: scroll;">
             <ueditor #pageContentEl name="newsContent" [(ngModel)]="weather.content"  [config]="ueditor_config" (onReady)="_ready($event)">
             </ueditor>
           </div>
