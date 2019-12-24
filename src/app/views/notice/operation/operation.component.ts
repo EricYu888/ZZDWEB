@@ -33,6 +33,47 @@ export class NoticeOperationComponent implements OnInit {
   loading: any;
   activitelist = [];
   alertsDismiss: any = [];
+  
+  ueditor_config = {
+    toolbars: [
+      [
+        'FullScreen', // 全屏
+        'bold', // 加粗
+        'italic', // 斜体
+        'underline', // 下划线
+        '|',
+        'forecolor',  // 字体颜色
+        'backcolor',  // 背景色
+        'fontfamily', // 字体
+        'fontsize', // 字号
+        '|',
+        'insertorderedlist',  // 有序列表
+        'insertunorderedlist',  // 无序列表
+        '|',
+        'justifyleft',  // 左对齐
+        'justifycenter',  // 居中对齐
+        'justifyright', // 右对齐
+        'justifyjustify', // 两端对齐
+        '|',
+        'link', // 超链接
+        'unlink', // 取消链接
+        'inserttable', // 插入表格
+        '|',
+        'insertimage', //多图上传
+        // 'simpleupload', // 单图上传
+      ]
+    ],
+    autoClearinitialContent: true,  // 自动清除初始内容
+    wordCount: true, // 文字计数
+    focus: false, // 初始化后获得焦点
+    initialFrameHeight: 200, // 设置高度
+    initialFrameWidth: '100%', // 设置宽度
+    enableDragUpload: true, // 启用拖放上传
+    enablePasteUpload: true, // 启用粘贴上传
+    imageScaleEnabled: true, // 启用图片拉伸缩放
+    autoHeightEnabled: true, // 自动高度
+  };
+
   @ViewChild('title') title;
   @ViewChild('newsAuthor') newsAuthor;
   // @ViewChild('displayIndex') displayIndex;

@@ -16,7 +16,7 @@
                 <div class="form-group row">
                     <div class="col-md-2 col-form-label">内容：</div>
                     <div class="col-md-10 form-control" style="border: 0; height: auto">
-                        <ueditor #pageContentEl name="newsContent" [(ngModel)]="notice.newsContent">
+                        <ueditor #pageContentEl name="newsContent" [(ngModel)]="notice.newsContent" [config]="ueditor_config">
                         </ueditor>
                     </div>
                 </div>
