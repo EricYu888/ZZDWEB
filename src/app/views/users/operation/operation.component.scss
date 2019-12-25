@@ -36,3 +36,20 @@ button {
   transition: .15s ease-out;
   border-radius: .125rem;
 }
+
+.tableStyle{
+  margin-top:18px;
+  text-align:center;
+  width:40%; 
+  border: 1px sold #e4e7ea;
+  border-radius: 15%;
+  line-height: 30px;
+  height: 100px; 
+
+  tr td{
+    border: 1px solid #e4e7ea;
+  }
+  .thead-light{
+    background-color: #e4e7ea;
+  }
+}

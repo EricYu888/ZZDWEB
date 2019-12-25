@@ -23,7 +23,6 @@
                 [msg]="'请填写密码'" [readonly]="false" [labelname]="'用户密码'" [(ngModel)]="user.password"
                 [placeholder]="'请输入密码'" [inputType]="'text'" [showRequired]='true' [maxlength]="15">
             </app-validator-input>
-
             <div class="form-group row">
                 <label class="col-md-2 col-form-label"><span style="color: red;">*</span>激活</label>
                 <label class="switch switch-primary" style="margin-left: 16px;">
@@ -32,6 +31,30 @@
                     <span class="switch-slider"></span>
                 </label>
             </div>
+            <table class="tableStyle">
+                <thead class="thead-light">
+                    <tr>
+                        <th>
+                            <input type="checkbox" [(ngModel)]="allCheck" (change)="checkChange(null)" />
+                        </th>
+                        <th>站点名称</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of siteList">
+                        <td style="width: 15%;">
+                            <input type="checkbox" [(ngModel)]="item.checked" (change)="checkChange(item)" />
+                        </td>
+                        <td style="width: 85%;">{{item.name}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- <div class="invalid-feedback" [ngStyle]="{'display': !invalidate() && hasSubmit?'inline-block':'none'}">
+                请至少选择一项
+            </div> -->
+
+
             <div class="form-actions" *ngIf="add">
                 <button type="submit" class="btn btn-primary pull-right" (click)="saveUser()">保存</button>
             </div>

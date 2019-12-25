@@ -79,7 +79,7 @@ export class PictureOperationComponent implements OnInit {
     if (this.picture.imgUrl.length > 0) {
       this.isSubmit = true;
     }
-    if (this.title.test && this.isSubmit) {
+    if (this.title.test && this.isSubmit && this.displayIndex.test) {
       let callback = (res) => {
         this.appLoadingService.showLoading();
         if (res.result.isSuccess === true) {

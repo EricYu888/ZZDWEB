@@ -19,6 +19,7 @@ export class UserOperationComponent implements OnInit {
   add = false;
   modify = false;
   hasSubmit: boolean;
+  isfirstLoad = true;
   user = {
     account: '',
     userName: '',
@@ -26,9 +27,25 @@ export class UserOperationComponent implements OnInit {
     password: '',
     companyId: 0,
     isActivatedFlag: true,
-    isActivated: '1'
-
+    isActivated: '1',
+    equipments: ''
   };
+  validate_equip = true;
+  siteList = [
+    { "name": "Z0001", "checked": false },
+    { "name": "Z0002", "checked": false },
+    { "name": "Z0003", "checked": false },
+    { "name": "Z0004", "checked": false },
+    { "name": "Z0005", "checked": false },
+    { "name": "Z0006", "checked": false },
+    { "name": "Z0007", "checked": false },
+    { "name": "Z0008", "checked": false },
+    { "name": "Z0009", "checked": false },
+    { "name": "Z0010", "checked": false },
+  ];
+
+
+  allCheck = false;
 
   loading: any;
   activitelist = [];
@@ -87,14 +104,25 @@ export class UserOperationComponent implements OnInit {
         this.user.isActivatedFlag = res.result.data.isActivated === '1' ? true : false;
         this.user.isActivated = res.result.data.isActivated;
         this.user.password = res.result.data.password;
-        // console.log(res.result.data.isActivated)
+        this.user.equipments = res.result.data.equipments;
+        if (res.result.data.equipments) {
+          res.result.data.equipments.split(';').forEach(element => {
+            for (let i = 0; i < this.siteList.length; i++) {
+              if (this.siteList[i].name === element) {
+                this.siteList[i].checked = true;
+              }
+            }
+          });
+        }
+
       }
     })
   }
 
   saveUser() {
     this.hasSubmit = true;
-    if (this.account.test && this.userName.test && this.imeiCode.test) {
+    var siteList = "";
+    if (this.account.test && this.userName.test && this.imeiCode.test && this.password.test) {
       this.appLoadingService.showLoading();
       let callback = (res) => {
         this.appLoadingService.hideLoading();
@@ -117,9 +145,22 @@ export class UserOperationComponent implements OnInit {
       if (this.add) {
         this.user.companyId = parseInt(sessionStorage.getItem('companyId'));
         this.user.isActivated = this.user.isActivatedFlag ? "1" : "0";
+        this.siteList.forEach(res => {
+          if (res.checked) {
+            siteList += res.name + ";"
+          }
+        })
+        this.user.equipments = siteList;
         this.service.AddUser(this.user).then(callback);
       } else if (this.modify) {
         this.user.isActivated = this.user.isActivatedFlag ? "1" : "0";
+
+        this.siteList.forEach(res => {
+          if (res.checked) {
+            siteList += res.name + ";"
+          }
+        })
+        this.user.equipments = siteList;
         this.service.UpdataUser(this.user).then(callback);
       }
     }
@@ -139,9 +180,41 @@ export class UserOperationComponent implements OnInit {
       timeout: 5000
     });
   }
+  checkChange(item) {
+    let list = "";
+    if (!item) {
+      this.siteList.forEach((res, index) => {
+        res.checked = this.allCheck;
+      });
+    } else {
+      for (let i = 0, len = this.siteList.length; i < len; i++) {
+        if (!this.siteList[i].checked) {
+          this.allCheck = false;
+          return;
+        }
+      }
+      this.allCheck = true;
+      this.siteList.forEach(res => {
+        if (res.checked) {
+          list += res.name + ";"
+        }
+      })
+      this.user.equipments = list;
+    }
 
-  close()
-  {
-    this.router.navigate(['/user'], { replaceUrl: true});
   }
+  close() {
+    this.router.navigate(['/user'], { replaceUrl: true });
+  }
+
+  invalidate() {
+    if (this.user.equipments) {
+      this.validate_equip = this.user.equipments.length > 0 ? true : false;
+      return this.validate_equip;
+    }
+    else {
+      return false;
+    }
+  }
+
 }
