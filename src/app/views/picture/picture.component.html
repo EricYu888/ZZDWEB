@@ -25,21 +25,23 @@
                           <tr>
                               <th>图片名称</th>
                               <th>图片</th>
+                              <th>显示序号</th>
                               <th>操作</th>
                           </tr>
                       </thead>
                       <tbody>
                           <tr *ngIf="!loading && pictureList.length==0">
-                              <td colspan="3">没有相关数据</td>
+                              <td colspan="4">没有相关数据</td>
                           </tr>
                           <tr *ngIf="loading">
-                              <td colspan="3">正在载入数据...</td>
+                              <td colspan="4">正在载入数据...</td>
                           </tr>
                           <tr *ngFor="let item of pictureList">
                             <td>{{item.title}}</td>
                             <td>
                               <img *ngIf="validatorStr(item.imgUrl)" src="{{item.imgUrl}}" style="width:120px;height:80px;">
                             </td>
+                            <td>{{item.displayIndex}}</td>
                             <td style="text-align:center;">
                               <div class="form-actions">
                                   <button type="button" class="btn btn-info operateButton" (click)="jumpToModify(item)">修改</button> &nbsp;

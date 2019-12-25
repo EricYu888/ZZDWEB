@@ -22,7 +22,8 @@ export class UserOperationComponent implements OnInit {
   user = {
     account: '',
     userName: '',
-    IMEICode: '147852963789456',
+    IMEICode: '',
+    password: '',
     companyId: 0,
     isActivatedFlag: true,
     isActivated: '1'
@@ -35,7 +36,7 @@ export class UserOperationComponent implements OnInit {
   @ViewChild('account') account;
   @ViewChild('userName') userName;
   @ViewChild('IMEICode') imeiCode;
-
+  @ViewChild('password') password;
   constructor(
     public activatedRoute: ActivatedRoute,
     public router: Router,
@@ -85,6 +86,7 @@ export class UserOperationComponent implements OnInit {
         this.user.IMEICode = res.result.data.imeiCode;
         this.user.isActivatedFlag = res.result.data.isActivated === '1' ? true : false;
         this.user.isActivated = res.result.data.isActivated;
+        this.user.password = res.result.data.password;
         // console.log(res.result.data.isActivated)
       }
     })
@@ -109,9 +111,7 @@ export class UserOperationComponent implements OnInit {
         } else if (res.code === 'EXPIRE') {
           this.router.navigate(['/logout'], { replaceUrl: true });
         } else {
-          if (res.msg === '用户已存在') {
-            this.appAlertService.addAlert({ type: 'info', msg: '用户已存在!' });
-          }
+          this.addErrorMsg(res.result.errorMessage);
         }
       }
       if (this.add) {
@@ -131,5 +131,17 @@ export class UserOperationComponent implements OnInit {
     else {
       this.user.isActivated = '0';
     }
+  }
+  addErrorMsg(msg) {
+    this.alertsDismiss.push({
+      type: 'danger',
+      msg: `${msg}`,
+      timeout: 5000
+    });
+  }
+
+  close()
+  {
+    this.router.navigate(['/user'], { replaceUrl: true});
   }
 }

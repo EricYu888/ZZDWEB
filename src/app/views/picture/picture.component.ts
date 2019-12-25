@@ -29,7 +29,6 @@ export class PictureComponent implements OnInit {
   ) {
 
     if (!this.pageNum) {
-      confirm
       this.pageNum = 1;
     }
   }
@@ -50,9 +49,6 @@ export class PictureComponent implements OnInit {
 
       if (res.result.isSuccess) {
         this.pictureList = res.result.data;
-        this.pictureList.forEach(res => {
-          res.imgUrl = PIC_FILE_PATH + res.imgUrl
-        })
         this.totalItems = res.result.total;
       }
     })
@@ -95,7 +91,6 @@ export class PictureComponent implements OnInit {
   }
 
   pageChanged(event) {
-    console.log(event.page)
     this.pageNum = event.page;
     this.getAll();
   }

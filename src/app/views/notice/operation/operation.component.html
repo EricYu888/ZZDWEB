@@ -15,7 +15,7 @@
             </app-validator-input> -->
                 <div class="form-group row">
                     <div class="col-md-2 col-form-label">内容：</div>
-                    <div class="col-md-10 form-control" style="border: 0; height: auto">
+                    <div class="col-md-10 form-control" style="border: 0; height: 500px;overflow-y: scroll;">
                         <ueditor #pageContentEl name="newsContent" [(ngModel)]="notice.newsContent" [config]="ueditor_config">
                         </ueditor>
                     </div>
@@ -60,9 +60,7 @@
             <div class="form-actions" *ngIf="modify" style="margin-top: 20px;">
                 <button type="submit" class="btn btn-primary pull-right" (click)="saveNotice()">修改</button>
             </div>
-            <div class="form-actions" *ngIf="detailView" style="margin-top: 20px;">
-                <button type="submit" class="btn btn-primary pull-right" (click)="clolseNotice()">关闭</button>
-            </div>
+            <button type="submit" class="btn btn-secondary pull-right" (click)="close()">关闭</button>
         </div>
     </div>
 </div>

@@ -177,8 +177,8 @@ export class NoticeOperationComponent implements OnInit {
 
     }
   }
-  clolseNotice() {
-
+  close() {
+    this.router.navigate(['/notice'], { replaceUrl: true});
   }
   validatorStr(str) {
     return !this.util.isEmptyStr(str);

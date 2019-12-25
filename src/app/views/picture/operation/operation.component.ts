@@ -27,7 +27,7 @@ export class PictureOperationComponent implements OnInit {
     title: '',
     imgUrl: '',
     picureUrl: '',
-    displayIndex: 0
+    displayIndex: ''
   };
   alertsDismiss: any = [];
   facefile;
@@ -103,15 +103,16 @@ export class PictureOperationComponent implements OnInit {
         let param = {
           title: this.picture.title,
           imgUrl: this.picture.imgUrl,
-          companyId: sessionStorage.getItem('companyId')
+          companyId: sessionStorage.getItem('companyId'),
+          displayIndex: this.picture.displayIndex
         }
-        console.log(param)
         this.service.Add(param).then(callback);
       } else if (this.modify) {
         let param = {
           id: this.id,
           title: this.picture.title,
-          imgUrl: this.picture.imgUrl
+          imgUrl: this.picture.imgUrl,
+          displayIndex: this.picture.displayIndex
         }
         this.service.Update(param).then(callback);
       }
@@ -140,7 +141,8 @@ export class PictureOperationComponent implements OnInit {
       if (res.result.isSuccess === true) {
         this.picture.title = res.result.data.title;
         this.picture.imgUrl = res.result.data.imgUrl;
-        this.picture.picureUrl = PIC_FILE_PATH + res.result.data.imgUrl;
+        this.picture.picureUrl = res.result.data.imgUrl;
+        this.picture.displayIndex = res.result.data.displayIndex;
       }
     })
   }
@@ -172,15 +174,15 @@ export class PictureOperationComponent implements OnInit {
       }).then(res => {
         if (res.result.isSuccess) {
           that.passValidate = false;
-          that.picture.imgUrl = res.result.data;
+          that.picture.imgUrl = PIC_FILE_PATH + res.result.data;
           that.picture.picureUrl = PIC_FILE_PATH + res.result.data;
         }
       })
     };
   }
 
-  clolsePic() {
-
+  close() {
+    this.router.navigate(['/picture'], { replaceUrl: true});
   }
   validatorStr(str) {
     return !this.util.isEmptyStr(str);
