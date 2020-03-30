@@ -29,11 +29,19 @@
               <thead class="thead-light">
                 <tr>
                   <th>公立日期</th>
-                  <th>阴历</th>
+                  <!-- <th>阴历</th>
                   <th>涨潮时间</th>
                   <th>退潮时间</th>
                   <th>涨潮时间</th>
-                  <th>退潮时间</th>
+                  <th>退潮时间</th> --> 
+                  <th>潮时1</th>
+                  <th>潮高1</th>
+                  <th>潮时2</th>
+                  <th>潮高2</th>
+                  <th>潮时3</th>
+                  <th>潮高3</th>
+                  <th>潮时4</th>
+                  <th>潮高4</th>
                 </tr>
               </thead>
               <tbody *ngIf="loading">                
@@ -47,11 +55,19 @@
                 </tr>
                 <tr *ngFor="let item of tideList">
                   <td>{{item.publicDate | date:'yyyy-MM-dd'}}</td>
-                  <td>{{item.moonDate}}</td>
+                  <!-- <td>{{item.moonDate}}</td>
                   <td>{{item.flood1 | date:'HH:mm'}}</td>
                   <td>{{item.ebb1 | date:'HH:mm'}}</td>
                   <td>{{item.flood2 | date:'HH:mm'}}</td>
-                  <td>{{item.ebb2 | date:'HH:mm'}}</td>
+                  <td>{{item.ebb2 | date:'HH:mm'}}</td> -->
+                  <td>{{item.floodTime1}}</td>
+                  <td>{{item.floodHigh1}}</td>
+                  <td>{{item.floodTime2}}</td>
+                  <td>{{item.floodHigh2}}</td>
+                  <td>{{item.floodTime3}}</td>
+                  <td>{{item.floodHigh3}}</td>
+                  <td>{{item.floodTime4}}</td>
+                  <td>{{item.floodHigh4}}</td>
                 </tr>
               </tbody>
             </table>
