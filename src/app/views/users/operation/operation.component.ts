@@ -8,6 +8,7 @@ import { AppLoadingService } from '../../../components/app-loading';
 import { AlertConfig } from 'ngx-bootstrap/alert';
 
 
+
 @Component({
   templateUrl: 'operation.component.html',
   styleUrls: ['./operation.component.scss'],
@@ -32,20 +33,32 @@ export class UserOperationComponent implements OnInit {
   };
   validate_equip = true;
   siteList = [
-    { "name": "Z0001", "checked": false },
-    { "name": "Z0002", "checked": false },
-    { "name": "Z0003", "checked": false },
-    { "name": "Z0004", "checked": false },
-    { "name": "Z0005", "checked": false },
-    { "name": "Z0006", "checked": false },
-    { "name": "Z0007", "checked": false },
-    { "name": "Z0008", "checked": false },
-    { "name": "Z0009", "checked": false },
-    { "name": "Z0010", "checked": false },
+    { "name": "Z0001", "checked": true },
+    { "name": "Z0002", "checked": true },
+    { "name": "Z0003", "checked": true },
+    { "name": "Z0004", "checked": true },
+    { "name": "Z0005", "checked": true },
+    { "name": "Z0006", "checked": true },
+    { "name": "Z0007", "checked": true },
+    { "name": "Z0008", "checked": true },
+    { "name": "Z0009", "checked": true },
+    { "name": "Z0010", "checked": true },
   ];
 
+  list = [
+    "Z0001",
+    "Z0002",
+    "Z0003",
+    "Z0004",
+    "Z0005",
+    "Z0006",
+    "Z0007",
+    "Z0008",
+    "Z0009",
+    "Z0010"
+  ]
 
-  allCheck = false;
+  allCheck = true;
 
   loading: any;
   activitelist = [];
@@ -92,6 +105,7 @@ export class UserOperationComponent implements OnInit {
 
   loadUser() {
     this.loading = true;
+    let selectSite = [];
     const param = {
       id: this.id
     }
@@ -106,18 +120,26 @@ export class UserOperationComponent implements OnInit {
         this.user.password = res.result.data.password;
         this.user.equipments = res.result.data.equipments;
         if (res.result.data.equipments) {
-          res.result.data.equipments.split(';').forEach(element => {
-            for (let i = 0; i < this.siteList.length; i++) {
-              if (this.siteList[i].name === element) {
-                this.siteList[i].checked = true;
-              }
-            }
-          });
+          selectSite = res.result.data.equipments.split(';')
         }
-
+        let notin = this.getArrDifference(this.list, selectSite);
+        for (let i = 0; i < notin.length; i++) {
+          if (notin[i].length > 0) {
+            this.allCheck = false;
+            let index = this.list.indexOf(notin[i]);
+            this.siteList[index].checked = false;
+          }
+        }
       }
     })
   }
+  getArrDifference(arr1, arr2) {
+    return arr1.concat(arr2).filter(function (v, i, arr) {
+      return arr.indexOf(v) === arr.lastIndexOf(v);
+    });
+  }
+
+
 
   saveUser() {
     this.hasSubmit = true;
@@ -150,17 +172,26 @@ export class UserOperationComponent implements OnInit {
             siteList += res.name + ";"
           }
         })
-        this.user.equipments = siteList;
+        if (siteList) {
+          this.user.equipments = siteList.substr(0, siteList.length - 1);
+        }
+        else {
+          this.user.equipments = ""
+        }
+
         this.service.AddUser(this.user).then(callback);
       } else if (this.modify) {
         this.user.isActivated = this.user.isActivatedFlag ? "1" : "0";
-
         this.siteList.forEach(res => {
           if (res.checked) {
             siteList += res.name + ";"
           }
         })
-        this.user.equipments = siteList;
+        if (siteList) {
+          this.user.equipments = siteList.substr(0, siteList.length - 1);
+        } else {
+          this.user.equipments = ""
+        }
         this.service.UpdataUser(this.user).then(callback);
       }
     }
